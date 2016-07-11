@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B1629E21CD1F7D300298A1E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B1629E11CD1F7D300298A1E /* main.cpp */; };
+		4B1629ED1CD208F200298A1E /* AirServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B1629EB1CD208F200298A1E /* AirServer.cpp */; };
+		4BD095B71D30F7CC006D4371 /* AirClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095B51D30F7CC006D4371 /* AirClient.cpp */; };
+		4BD095C31D310343006D4371 /* AirQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095BB1D310343006D4371 /* AirQueue.cpp */; };
+		4BD095C41D310343006D4371 /* AirThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095BD1D310343006D4371 /* AirThread.cpp */; };
+		4BD095C51D310343006D4371 /* AirThreadLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095BF1D310343006D4371 /* AirThreadLock.cpp */; };
+		4BD095C61D310343006D4371 /* AirThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095C11D310343006D4371 /* AirThreadPool.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4B1629DC1CD1F7D300298A1E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4B1629DE1CD1F7D300298A1E /* Socket */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Socket; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1629E11CD1F7D300298A1E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4B1629E81CD1F82A00298A1E /* AirSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirSocket.h; sourceTree = "<group>"; };
+		4B1629E91CD1F82A00298A1E /* AirConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirConnection.h; sourceTree = "<group>"; };
+		4B1629EA1CD1F82A00298A1E /* AirListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirListener.h; sourceTree = "<group>"; };
+		4B1629EB1CD208F200298A1E /* AirServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirServer.cpp; sourceTree = "<group>"; };
+		4B1629EC1CD208F200298A1E /* AirServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirServer.hpp; sourceTree = "<group>"; };
+		4BD095B51D30F7CC006D4371 /* AirClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirClient.cpp; sourceTree = "<group>"; };
+		4BD095B61D30F7CC006D4371 /* AirClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirClient.hpp; sourceTree = "<group>"; };
+		4BD095B91D310343006D4371 /* AirLinuxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirLinuxThread.h; sourceTree = "<group>"; };
+		4BD095BA1D310343006D4371 /* AirOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirOperation.h; sourceTree = "<group>"; };
+		4BD095BB1D310343006D4371 /* AirQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirQueue.cpp; sourceTree = "<group>"; };
+		4BD095BC1D310343006D4371 /* AirQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirQueue.hpp; sourceTree = "<group>"; };
+		4BD095BD1D310343006D4371 /* AirThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirThread.cpp; sourceTree = "<group>"; };
+		4BD095BE1D310343006D4371 /* AirThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirThread.h; sourceTree = "<group>"; };
+		4BD095BF1D310343006D4371 /* AirThreadLock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirThreadLock.cpp; sourceTree = "<group>"; };
+		4BD095C01D310343006D4371 /* AirThreadLock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirThreadLock.hpp; sourceTree = "<group>"; };
+		4BD095C11D310343006D4371 /* AirThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirThreadPool.cpp; sourceTree = "<group>"; };
+		4BD095C21D310343006D4371 /* AirThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirThreadPool.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B1629DB1CD1F7D300298A1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B1629D51CD1F7D300298A1E = {
+			isa = PBXGroup;
+			children = (
+				4B1629E01CD1F7D300298A1E /* Socket */,
+				4B1629DF1CD1F7D300298A1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B1629DF1CD1F7D300298A1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B1629DE1CD1F7D300298A1E /* Socket */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B1629E01CD1F7D300298A1E /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				4BD095B81D310343006D4371 /* Thread */,
+				4B1629E81CD1F82A00298A1E /* AirSocket.h */,
+				4B1629E91CD1F82A00298A1E /* AirConnection.h */,
+				4B1629EA1CD1F82A00298A1E /* AirListener.h */,
+				4B1629E11CD1F7D300298A1E /* main.cpp */,
+				4B1629EB1CD208F200298A1E /* AirServer.cpp */,
+				4B1629EC1CD208F200298A1E /* AirServer.hpp */,
+				4BD095B51D30F7CC006D4371 /* AirClient.cpp */,
+				4BD095B61D30F7CC006D4371 /* AirClient.hpp */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
+		4BD095B81D310343006D4371 /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				4BD095B91D310343006D4371 /* AirLinuxThread.h */,
+				4BD095BA1D310343006D4371 /* AirOperation.h */,
+				4BD095BB1D310343006D4371 /* AirQueue.cpp */,
+				4BD095BC1D310343006D4371 /* AirQueue.hpp */,
+				4BD095BD1D310343006D4371 /* AirThread.cpp */,
+				4BD095BE1D310343006D4371 /* AirThread.h */,
+				4BD095BF1D310343006D4371 /* AirThreadLock.cpp */,
+				4BD095C01D310343006D4371 /* AirThreadLock.hpp */,
+				4BD095C11D310343006D4371 /* AirThreadPool.cpp */,
+				4BD095C21D310343006D4371 /* AirThreadPool.hpp */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B1629DD1CD1F7D300298A1E /* Socket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B1629E51CD1F7D300298A1E /* Build configuration list for PBXNativeTarget "Socket" */;
+			buildPhases = (
+				4B1629DA1CD1F7D300298A1E /* Sources */,
+				4B1629DB1CD1F7D300298A1E /* Frameworks */,
+				4B1629DC1CD1F7D300298A1E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Socket;
+			productName = Socket;
+			productReference = 4B1629DE1CD1F7D300298A1E /* Socket */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B1629D61CD1F7D300298A1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "彭浩";
+				TargetAttributes = {
+					4B1629DD1CD1F7D300298A1E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 4B1629D91CD1F7D300298A1E /* Build configuration list for PBXProject "Socket" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4B1629D51CD1F7D300298A1E;
+			productRefGroup = 4B1629DF1CD1F7D300298A1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B1629DD1CD1F7D300298A1E /* Socket */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B1629DA1CD1F7D300298A1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BD095C61D310343006D4371 /* AirThreadPool.cpp in Sources */,
+				4B1629E21CD1F7D300298A1E /* main.cpp in Sources */,
+				4BD095B71D30F7CC006D4371 /* AirClient.cpp in Sources */,
+				4BD095C31D310343006D4371 /* AirQueue.cpp in Sources */,
+				4BD095C41D310343006D4371 /* AirThread.cpp in Sources */,
+				4B1629ED1CD208F200298A1E /* AirServer.cpp in Sources */,
+				4BD095C51D310343006D4371 /* AirThreadLock.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B1629E31CD1F7D300298A1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4B1629E41CD1F7D300298A1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4B1629E61CD1F7D300298A1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4B1629E71CD1F7D300298A1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B1629D91CD1F7D300298A1E /* Build configuration list for PBXProject "Socket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1629E31CD1F7D300298A1E /* Debug */,
+				4B1629E41CD1F7D300298A1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B1629E51CD1F7D300298A1E /* Build configuration list for PBXNativeTarget "Socket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1629E61CD1F7D300298A1E /* Debug */,
+				4B1629E71CD1F7D300298A1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B1629D61CD1F7D300298A1E /* Project object */;
+}
