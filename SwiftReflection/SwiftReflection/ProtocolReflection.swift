@@ -18,6 +18,7 @@ func ProtoCreator(className: String) -> Proto? {
     guard let cls = NSClassFromString(className) else {
         return nil
     }
+    //dynamic change to protocol type to make sure we can call known functions
     guard let c = cls as? Proto.Type else {
         return nil
     }
