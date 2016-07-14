@@ -23,14 +23,14 @@ namespace AirCpp {
         int m_iMaxHandle;
         std::map<int, Connection *> m_mapConnections;
         fd_set m_ConnSet;
+        pthread_cond_t p_cond;
         
     public:
         Connection *createConnection(const std::string &host, int port) {
-            Connection *connection = new Connection(AF_INET, SOCK_STREAM, IPPROTO_IP);
+            Connection *connection = new Connection(AF_INET, SOCK_STREAM, IPPROTO_TCP);
             if ( connection->init(host, port) == 0 ) {
-                m_iMaxHandle = std::max(connection->mSocket.m_iSocketHandle, m_iMaxHandle);
-                FD_SET(connection->mSocket.m_iSocketHandle, &m_ConnSet);
-                m_mapConnections[connection->mSocket.m_iSocketHandle] = connection;
+                m_iMaxHandle = std::max(connection->m_pSocket->m_iSocketHandle, m_iMaxHandle);
+                m_mapConnections[connection->m_pSocket->m_iSocketHandle] = connection;
                 return connection;
             } else {
                 delete connection;
@@ -54,16 +54,17 @@ namespace AirCpp {
         
         void read() {
             struct timeval timeout;
-            timeout.tv_sec = 2;
+            timeout.tv_sec = 1;
             timeout.tv_usec = 0;
             std::vector<int> removeConnections;
+            
             while (true) {
                 FD_ZERO(&m_ConnSet);
                 int max = 0;
                 for(const auto& kvp : m_mapConnections) {
                     if (kvp.second->m_fReseiveHandler != nullptr) {
-                        FD_SET(kvp.second->mSocket.m_iSocketHandle, &m_ConnSet);
-                        max = std::max(kvp.second->mSocket.m_iSocketHandle, max);
+                        FD_SET(kvp.second->m_pSocket->m_iSocketHandle, &m_ConnSet);
+                        max = std::max(kvp.second->m_pSocket->m_iSocketHandle, max);
                     } else {
                         removeConnections.push_back(kvp.first);
                     }
@@ -85,7 +86,7 @@ namespace AirCpp {
                         continue;
                     default:
                         //read
-                        handleReceiveData(m_ConnSet);
+                        handleReceiveData();
                         for (const auto &v : removeConnections) {
                             auto con = m_mapConnections[v];
                             m_mapConnections.erase(v);
@@ -97,11 +98,11 @@ namespace AirCpp {
             }
         }
         
-        void handleReceiveData(const fd_set &set) {
+        void handleReceiveData() {
             for(const auto& kvp : m_mapConnections) {
-                if(FD_ISSET(kvp.second->mSocket.m_iSocketHandle, &m_ConnSet)) {
+                if(FD_ISSET(kvp.second->m_pSocket->m_iSocketHandle, &m_ConnSet)) {
                     if (kvp.second->m_fReseiveHandler != nullptr && kvp.second->m_fReseiveHandler() == 0) {
-                        kvp.second->m_fReseiveHandler = nullptr;
+//                        kvp.second->m_fReseiveHandler = nullptr;
                     }
                     
                 }

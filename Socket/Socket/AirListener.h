@@ -44,10 +44,11 @@ namespace AirCpp{
          backlog, 一个决定监听队列大小的整数，当有一个连接请求到来，就会进入此监听队列，当队列满后，新的连接请求会返回错误。
          */
         int init(unsigned short portnum, unsigned int backlog) {
-            mSocket.init(m_iDomainType, m_iDataType, m_iProtocol);
-            mSocket.bind(portnum);
-            mSocket.listen(backlog);
-            return 0;
+            if (mSocket.init(m_iDomainType, m_iDataType, m_iProtocol) == 0 && mSocket.bind(portnum) == 0 && mSocket.listen(backlog) == 0) {
+                return 0;
+            } else {
+                return -1;
+            }
         }
         
         
@@ -67,8 +68,8 @@ namespace AirCpp{
                     else
                         return -1;
                 } else {
-                    Socket s;
-                    s.init(t, &client_addr, &client_size);
+                    Socket *s = new Socket();
+                    s->init(t, &client_addr, &client_size);
                     Connection *connect = new Connection(s);
                     callback(t, connect);
                 }

@@ -21,13 +21,17 @@ namespace AirCpp{
         friend Listener;
         friend Server;
     protected:
-        Socket mSocket;
+        Socket *m_pSocket;
         int m_iDomainType;
         int m_iDataType;
         int m_iProtocol;
         ReseiveHandler m_fReseiveHandler;
         
         protected:
+        ~Connection() {
+            delete m_pSocket;
+        }
+        
         void handleReceive() {
             if (m_fReseiveHandler != nullptr) {
                 m_fReseiveHandler();
@@ -38,19 +42,16 @@ namespace AirCpp{
         m_iDomainType(domainType),
         m_iDataType(dataType),
         m_iProtocol(protocol),
-        m_fReseiveHandler(nullptr)
+        m_fReseiveHandler(nullptr),
+        m_pSocket(nullptr)
         {
         }
         
-        Connection(const Connection & conn) {
-            mSocket = conn.mSocket;
-            m_iDomainType = conn.m_iDomainType;
-            m_iDataType = conn.m_iDataType;
-            m_iProtocol = conn.m_iProtocol;
-            m_fReseiveHandler = nullptr;
-        }
         
-        Connection(const Socket s): mSocket(s)  {
+        Connection(Socket *ps):
+        m_fReseiveHandler(nullptr),
+        m_pSocket(ps)
+        {
             m_fReseiveHandler = nullptr;
         }
         
@@ -60,9 +61,10 @@ namespace AirCpp{
         }
         
         int init(const std::string &host, int port) {
-            int rs = mSocket.init(m_iDomainType, m_iDataType, m_iProtocol);
+            m_pSocket = new Socket();
+            int rs = m_pSocket->init(m_iDomainType, m_iDataType, m_iProtocol);
             if (rs == 0) {
-                return mSocket.connect(host, port);
+                return m_pSocket->connect(host, port);
             } else {
                 return rs;
             }
@@ -75,11 +77,11 @@ namespace AirCpp{
         }
         
         long long send(const char *c_data, long long length) {
-            return mSocket.send(c_data, length);
+            return m_pSocket->send(c_data, length);
         }
         
         long long read(char *c_data, long long length) {
-            return mSocket.read(c_data, length);
+            return m_pSocket->read(c_data, length);
         }
     };
 }
