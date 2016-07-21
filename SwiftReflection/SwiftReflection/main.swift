@@ -7,8 +7,10 @@
 //
 
 import Foundation
+let dic = ["123":"123"]
+let s = dic["123"] ?? "321"
 
-print("Hello, World!")
+print("Hello, World! \(s)")
 
 ClassCreator("A")?.log()
 ClassCreator("B")?.log()
