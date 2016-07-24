@@ -30,11 +30,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let (signal, observe) = Signal<Int, NoError>.pipe()
-        signal.observeOn(UIScheduler()).map { (s) -> String in
-            return "str \(s)"
-        }.observeNext { (r) in
-            print("next \(r)")
+        let (signal, observe) = Signal<(UIButton?), NoError>.pipe()
+
+        signal.observeOn(UIScheduler()).observeNext { (btn) in
+            print("\(btn)")
         }
         
         signal.observeCompleted { 
@@ -47,12 +46,32 @@ class ViewController: UIViewController {
         
         signal.observeInterrupted { 
             print("Interrupted")
+            
         }
         
-//        observe.sendFailed(TError())
-        observe.sendNext(2)
-//        observe.sendInterrupted()
-        observe.sendNext(3)
+        let btn = UIButton(type: .Custom)
+        btn.frame = CGRectMake(50, 50, 100, 50)
+        btn.setTitle("btn", forState: .Normal)
+        self.view.addSubview(btn)
+        let obj = NSObject()
+//        obj.rac_valuesAndChangesForKeyPath(<#T##keyPath: String!##String!#>, options: <#T##NSKeyValueObservingOptions#>, observer: <#T##NSObject!#>).subscribeNext(<#T##nextBlock: ((AnyObject!) -> Void)!##((AnyObject!) -> Void)!##(AnyObject!) -> Void#>)
+//        btn.rac_signalForSelector(<#T##selector: Selector##Selector#>).subscribeNext { (<#AnyObject!#>) in
+//            <#code#>
+//        }
+//        btn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (btn) in
+//            print("onTouch")
+//        }
+        
+        
+        if let url = NSURL(string: "http://www.baidu.com") {
+            let request = NSURLRequest(URL: url)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) in
+                observe.sendNext((response, data, error))
+            }
+            NSURLConnection.rac_sendAsynchronousRequest(request).subscribeNext({ (<#AnyObject!#>) in
+                <#code#>
+            })
+        }
         observe.sendCompleted()
         
     }
