@@ -38,7 +38,6 @@
 		4B1629EC1CD208F200298A1E /* AirServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirServer.hpp; sourceTree = "<group>"; };
 		4BD095B51D30F7CC006D4371 /* AirClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirClient.cpp; sourceTree = "<group>"; };
 		4BD095B61D30F7CC006D4371 /* AirClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirClient.hpp; sourceTree = "<group>"; };
-		4BD095B91D310343006D4371 /* AirLinuxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirLinuxThread.h; sourceTree = "<group>"; };
 		4BD095BA1D310343006D4371 /* AirOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirOperation.h; sourceTree = "<group>"; };
 		4BD095BB1D310343006D4371 /* AirQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirQueue.cpp; sourceTree = "<group>"; };
 		4BD095BC1D310343006D4371 /* AirQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirQueue.hpp; sourceTree = "<group>"; };
@@ -96,7 +95,6 @@
 		4BD095B81D310343006D4371 /* Thread */ = {
 			isa = PBXGroup;
 			children = (
-				4BD095B91D310343006D4371 /* AirLinuxThread.h */,
 				4BD095BA1D310343006D4371 /* AirOperation.h */,
 				4BD095BB1D310343006D4371 /* AirQueue.cpp */,
 				4BD095BC1D310343006D4371 /* AirQueue.hpp */,
