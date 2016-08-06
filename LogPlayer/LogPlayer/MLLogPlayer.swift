@@ -12,15 +12,25 @@ class MLLogPlayer : NSObject {
     var parser: MLLogParser? = nil
     private var timer: NSTimer? = nil
     var currentTime: NSTimeInterval = 0
-    override init() {
+    required init(urlString: String) {
         super.init()
+        parser = MLLogParser(urlString: urlString)
+    }
+    
+    deinit {
+        stopTimer()
     }
     
     @objc private func fire(t: NSTimer) {
         currentTime += 0.5
+        print("current time: \(currentTime)")
+        guard let l = parser?.log(currentTime) else {
+            return
+        }
+        sendLog(l)
     }
     
-    func start() {
+    private func startTimer() {
         dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
             guard let ws = self else {
                 return
@@ -30,26 +40,46 @@ class MLLogPlayer : NSObject {
         }
     }
     
+    private func stopTimer() {
+        dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
+            guard let ws = self else {
+                return
+            }
+            ws.timer?.invalidate()
+        }
+    }
+    
+    func start() {
+        currentTime = 0
+        startTimer()
+    }
+    
+    func resume() {
+        startTimer()
+    }
+    
     func jump(time: NSTimeInterval) {
-        currentTime = time
+        dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
+            self?.currentTime = time
+            guard let logs = self?.parser?.logsBeforTime(time) else {
+                return
+            }
+            for l in logs {
+                self?.sendLog(l)
+            }
+        }
     }
     
     func stop() {
+        stopTimer()
         currentTime = 0
-        dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
-            guard let ws = self else {
-                return
-            }
-            ws.timer?.invalidate()
-        }
     }
     
     func pause() {
-        dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
-            guard let ws = self else {
-                return
-            }
-            ws.timer?.invalidate()
-        }
+        stopTimer()
+    }
+    
+    private func sendLog(log: MLLog) {
+        //todo send:
     }
 }

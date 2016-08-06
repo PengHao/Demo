@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol MLFStreamDelegate <NSObject>
+
+- (void)streamHasAppend;
+
+@end
+
 @interface MLFStream : NSObject
+@property(nonatomic, weak, nullable)id<MLFStreamDelegate> delegate;
 
 - (instancetype __nullable)initWithFilePath: (NSString * __nonnull)path;
 - (NSString *__nullable)getLine;
 - (void) appendData: (NSData * __nonnull)data;
-- (void)flush;
+- (void) flush;
 @end
