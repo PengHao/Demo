@@ -7,32 +7,58 @@
 //
 
 import Foundation
+
 class MLLog {
     var timeOffset : NSTimeInterval!
     var jsonStr: String?
 }
 
 class MLLogParser : NSObject {
-    var stream: MLFStream? = nil
+    private var downloader: MLDownloader!
+    private var currentIndex: Int = 0
+    var stream: MLFStream!
     var logs = [MLLog]()
+    
     
     required init(urlString: String) {
         super.init()
         let path = "\(NSHomeDirectory())/test.txt"
         stream = MLFStream(filePath: path)
-        download(urlString)
+        stream.delegate = self
+        downloader = MLDownloader(urlString: urlString).receiveDataHandle({ [weak self](data) in
+            self?.stream.appendData(data)
+        }).finishedHandle({ 
+            print("download finished")
+        }).failedHandle({ (error) in
+            print("download error")
+        })
     }
     
+    func log(time: NSTimeInterval) -> MLLog? {
+        return abs(logs[currentIndex].timeOffset - time) < 0.5 ? logs[currentIndex] : nil
+    }
     
-    private func download(url: String) {
-        if let _ = NSURL(string: url) {
-            
+    func logsBeforTime(time: NSTimeInterval) -> [MLLog] {
+        var rs = [MLLog]()
+        for l in logs {
+            if abs(l.timeOffset - time) < 0.5 {
+                rs.append(l)
+            } else {
+                break
+            }
         }
+        return rs
     }
     
+    deinit {
+        
+    }
 }
 
-extension MLLogParser {
+extension MLLogParser : MLFStreamDelegate {
+    func streamHasAppend() {
+        parser()
+    }
     
     private func parser() {
         guard let s = stream else {

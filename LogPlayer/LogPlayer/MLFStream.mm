@@ -72,6 +72,7 @@ public:
 
 - (void)flush {
     pWriteStream->flush();
+    [self.delegate streamHasAppend];
 }
 
 - (void)dealloc
