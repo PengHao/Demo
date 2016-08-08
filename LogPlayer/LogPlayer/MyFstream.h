@@ -9,7 +9,8 @@ typedef enum{
 	OpenFileRW	= 1,
 	OpenFileR	= 2,
     OpenFileW	= 3,
-    OpenFileAPP	= 4
+    OpenFileAPP	= 4,
+    OpenFileCleanW	= 5,
 } OpenFileType;
 
 class MyFstream
@@ -24,9 +25,12 @@ public:
 	OpenFileType openType;
 	bool hasopened;
 
-	void *read(void);
-	void *read(size_t dataSize);
-    char *get_line(void);
+	size_t read(char *data, size_t dataSize);
+    size_t get_line(char *data, size_t dataSize);
+    
+    std::fstream::pos_type position();
+    void jump(const std::fstream::pos_type &pos);
+    
 	void write(const void *data, size_t len);
 	char dataBuffer[];
 	bool fail(void);

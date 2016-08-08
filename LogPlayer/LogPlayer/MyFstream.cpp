@@ -1,17 +1,22 @@
 ﻿#include "MyFstream.h"
 
 
-MyFstream::MyFstream(string _filename,  OpenFileType type){
-	hasopened = true;
-	filename = _filename;
+MyFstream::MyFstream(string _filename,  OpenFileType type) :
+fileStreams(nullptr),
+hasopened(true),
+filename(_filename),
+openType(type)
+{
 	fileStreams = new(fstream);
-	openType = type;
 	switch (type) {
 		case OpenFileR:
 			fileStreams->open(filename.c_str(), ios_base::in|ios_base::binary);
-			break;
+            break;
         case OpenFileW:
             fileStreams->open(filename.c_str(), ios_base::binary|ios_base::out);
+            break;
+        case OpenFileCleanW:
+            fileStreams->open(filename.c_str(), ios_base::binary|ios_base::out|ios_base::trunc);
             break;
         case OpenFileAPP:
 			fileStreams->open(filename.c_str(), ios_base::binary|ios_base::app);
@@ -22,7 +27,7 @@ MyFstream::MyFstream(string _filename,  OpenFileType type){
 	}
 	
 	if(fileStreams->fail()){
-		printf("error:cannot open file\n");
+		printf("error:cannot open file %s\n", filename.c_str());
 	}else {
 		hasopened = true;
         fileStreams->seekg (0, ios::end);
@@ -40,24 +45,22 @@ MyFstream::~MyFstream(void){
 }
 
 //读取文件
-void *MyFstream::read(size_t dataSize){
-    void *data = malloc(dataSize);
-    memset(data, 0, dataSize);
-	fileStreams->read((char *)data, dataSize);
-	return data;
+
+size_t MyFstream::read(char *data, size_t dataSize){
+    if (dataSize == 0) {
+        dataSize = filesize;
+    }
+	fileStreams->read(data, dataSize);
+	return dataSize;
 }
 
-char *MyFstream::get_line(void){
-    //can not be more tha 256
-    char *str_line = (char *)malloc(256*sizeof(char));
-    memset(str_line, 0, 256*sizeof(char));
-    fileStreams->getline(str_line, 256*sizeof(char));
-    //    DBG("%s",str_line);
-    return str_line;
+size_t MyFstream::get_line(char *data, size_t dataSize){
+    fileStreams->getline(data, dataSize);
+    return dataSize;
 }
 
-void *MyFstream::read(void){
-	return this->read(filesize);
+std::fstream::pos_type MyFstream::position() {
+    return fileStreams->tellg();
 }
 
 //写入文件
@@ -65,6 +68,9 @@ void MyFstream::write(const void *data, size_t len){
 	fileStreams->write((const char *)data, len);
 }
 
+void MyFstream::jump(const std::fstream::pos_type &pos) {
+    fileStreams->seekg(pos);
+}
 
 
 bool MyFstream::fail(void){

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <map>
+#include "MyFstream.h"
 namespace AirCpp {
     template <class Hash> class FileIndex;
     
@@ -57,19 +58,17 @@ namespace AirCpp {
             return pIndex;
         };
         
-        bool encode(char * data, size_t &length) const {
+        bool encode(char * data, size_t len) const {
             size_t hashValueSize = sizeof(m_llHashValue);
             size_t positionSize = sizeof(m_Postion);
-            if (length < size()) {
+            if (len < size()) {
                 printf("not enouph memery");
                 return false;
             }
-            memcpy(data, &m_llHashValue, sizeof(m_llHashValue));
-            data += hashValueSize;
-            length -= hashValueSize;
-            memcpy(data, &m_Postion, sizeof(m_Postion));
-            data += positionSize;
-            length -= positionSize;
+            char *temp = data;
+            memcpy(temp, &m_llHashValue, hashValueSize);
+            temp += hashValueSize;
+            memcpy(temp, &m_Postion, positionSize);
             return true;
         };
         
@@ -85,8 +84,74 @@ namespace AirCpp {
 #define _Index Index<Hash>
     private:
         std::map<Hash, const _Index*> m_mapPosIndex;
-        size_t const m_llIndexSize;
         std::string _strFlag;
+        
+        struct Stream{
+            MyFstream *pReadStream;
+            MyFstream *pWriteStream;
+            bool init(const std::string &path){
+                pWriteStream = new MyFstream(path+".temp", OpenFileCleanW);
+                pReadStream = new MyFstream(path, OpenFileR);
+                return pWriteStream && pReadStream;
+            }
+            Stream() :
+            pWriteStream(nullptr),
+            pReadStream(nullptr){
+                
+            }
+            ~Stream() {
+                remove(pReadStream->filename.c_str());
+                rename(pWriteStream->filename.c_str(), pReadStream->filename.c_str());
+                delete pReadStream;
+                delete pWriteStream;
+            }
+        } *_pStream;
+        
+        
+        FileIndex(Stream *stream) :
+        _pStream(stream),
+        m_mapPosIndex(std::map<Hash, const _Index*>()){
+            
+        }
+        
+        bool init() {
+            size_t len = _pStream->pReadStream->filesize;
+            if (len == 0) {
+            } else {
+                if (sIndexFlag.length() > len) {
+                    return false;
+                }
+                char *data = (char *)calloc(len, sizeof(char));
+                if (data) {
+                    _pStream->pReadStream->read(data, len);
+                    char *temp = data;
+                    return decode(temp, len);
+                } else {
+                    printf("calloc data failed");
+                    return false;
+                }
+                
+            }
+            return true;
+        }
+        
+        
+        bool decode(char * const data, const size_t &length) {
+            char *temp = data;
+            size_t len = length;
+            std::string flag(temp, sIndexFlag.length());
+            if (flag != sIndexFlag ) {
+                return false;
+            }
+            temp += sIndexFlag.length()+1;
+            
+            _Index *idx = _Index::decode(temp, len);
+            while (idx) {
+                m_mapPosIndex[idx->m_llHashValue] = idx;
+                idx = _Index::decode(temp, len);
+            }
+            return true;
+        };
     protected:
         
         bool encode(char * data, size_t &length) {
@@ -97,63 +162,57 @@ namespace AirCpp {
         };
         
     public:
-        static std::string const sIndexFlag;
-        static size_t const sIndexSize;
+        static FileIndex *Create(const std::string &path) {
+            Stream *stream = new Stream();
+            if(!stream->init(path + ".index")) {
+                delete stream;
+                return nullptr;
+            }
+            auto p_rs =  new FileIndex(stream);
+            if (! p_rs->init() ) {
+                delete p_rs;
+                p_rs = nullptr;
+            }
+            return p_rs;
+        }
         
-        bool addIndex(Hash hash, std::fstream::pos_type pos) {
-            _Index *index = new _Index(hash, pos);
-            m_mapPosIndex[hash] = index;
+        static std::string const sIndexFlag;
+        
+        void addIndex(Hash hash, std::fstream::pos_type pos) {
+            if (m_mapPosIndex[hash] == nullptr || m_mapPosIndex[hash]->getPosition() != pos) {
+                _Index *index = new _Index(hash, pos);
+                m_mapPosIndex[hash] = index;
+            } else {
+                
+            }
         }
         
         const _Index *indexOfHash(Hash hash) {
             return m_mapPosIndex[hash];
         }
         
-        static FileIndex *decode(char * const data, const size_t &length) {
-            char *temp = data;
-            size_t len = length;
-            if (std::string(temp, sIndexFlag.length()+1) != sIndexFlag ) {
-                return nullptr;
+        void flush() {
+            _pStream->pWriteStream->write(sIndexFlag.c_str(), sIndexFlag.length());
+            size_t s = _Index::size();
+            char *data = (char *)calloc(sizeof(char), s);
+            for (auto pair : m_mapPosIndex) {
+                memset(data, 0, s);
+                if (pair.second->encode(data, s)) {
+                    _pStream->pWriteStream->write(data, s);
+                }
             }
-            temp += sIndexFlag.length()+1;
-            size_t s = *(size_t *)temp;
-            if (s != sIndexSize) {
-                return nullptr;
-            }
-            
-            size_t indexSize = sizeof(size_t);
-            temp += indexSize;
-            if (indexSize > length) {
-                return nullptr;
-            }
-            temp += indexSize;
-            
-            FileIndex *index = new FileIndex(indexSize);
-            _Index *idx = _Index::decode(temp, len);
-            while (idx) {
-                index->m_mapPosIndex[idx->m_llHashValue] = idx;
-                idx = _Index::decode(temp, len);
-            }
-            return index;
-        };
-        
-        FileIndex(size_t indexSize) :
-        m_llIndexSize(indexSize)
-        {
+            free(data);
+            _pStream->pWriteStream->flush();
             
         }
         
         ~FileIndex() {
-            for (auto pair : m_mapPosIndex) {
-                delete pair.second;
-            }
+            //newfile
+            flush();
+            delete _pStream;
         }
     };
     template<class Hash>
     std::string const FileIndex<Hash>::sIndexFlag = "FileIndex";
-    
-    template<class Hash>
-    size_t const FileIndex<Hash>::sIndexSize = sizeof(size_t) + sIndexFlag.length();
-    
 }
 #endif /* FileIndex_hpp */

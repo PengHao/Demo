@@ -17,41 +17,43 @@ public:
 };
 #define TimeHashIndex FileIndex<int>
 @interface MLFStream () {
-    MyFstream *pReadStream;
-    MyFstream *pWriteStream;
-    TimeHashIndex *pIndex;
+    struct Content{
+        MyFstream *pReadStream;
+        MyFstream *pWriteStream;
+        
+        bool init(NSString *path);
+    } _content;
+    
+    TimeHashIndex *_pIndex;
 }
 
 @end
 #define IndexSize 10240
+#define LineMaxLen 1024
 @implementation MLFStream
+
+bool Content::init(NSString *path){
+    pWriteStream = new MyFstream(path.UTF8String, OpenFileAPP);
+    pReadStream = new MyFstream(path.UTF8String, OpenFileR);
+    
+    return pWriteStream && pReadStream;
+}
+
 
 - (instancetype)initWithFilePath: (NSString *)path {
     if (self = [super init]) {
         NSLog(@"initWithFilePath %@", path);
-        pWriteStream = new MyFstream(path.UTF8String, OpenFileAPP);
-        pReadStream = new MyFstream(path.UTF8String, OpenFileR);
-        if (!pWriteStream || !pReadStream) {
+        _pIndex = TimeHashIndex::Create(path.UTF8String);
+        if (_pIndex == nullptr || !_content.init(path)) {
             self = nil;
-        }
-        
-        if (pReadStream->filesize > TimeHashIndex::sIndexSize) {
-            char *flag = (char *)pReadStream->read(TimeHashIndex::sIndexSize);
-            pIndex = TimeHashIndex::decode(flag, TimeHashIndex::sIndexSize);
-            if (!pIndex && pReadStream->filesize == 0) {
-                pIndex = new TimeHashIndex(IndexSize);
-                char *data = (char *)calloc(1, IndexSize);
-                pIndex->decode(data, IndexSize);
-                pWriteStream->write(data, IndexSize);
-            }
-            free(flag);
         }
     }
     return self;
 }
 
 - (NSString * __nullable )getLine {
-    char *str = pReadStream->get_line();
+    char *str = (char *)calloc(sizeof(char), LineMaxLen);
+    _content.pReadStream->get_line(str, LineMaxLen);
     if (str && strlen(str) > 0) {
         return [NSString stringWithUTF8String:str];
     } else {
@@ -59,26 +61,32 @@ public:
     }
 }
 
+- (void) addIndex:(int) hash {
+    _pIndex->addIndex(hash, _content.pReadStream->position());
+}
+
 - (void) jump:(int) hash {
-    const Index<int> *index = pIndex->indexOfHash(hash);
-    index->getPosition();
-    
+    const Index<int> *index = _pIndex->indexOfHash(hash);
+    std::fstream::pos_type pos = index ? index->getPosition() : ios::beg;
+    _content.pReadStream->jump(pos);
 }
 
 
 - (void) appendData: (NSData *)data {
-    pWriteStream->write(data.bytes, data.length);
+    _content.pWriteStream->write(data.bytes, data.length);
+}
+
+- (void) flushIndex {
+    _pIndex->flush();
+    
 }
 
 - (void)flush {
-    pWriteStream->flush();
-    [self.delegate streamHasAppend];
+    _content.pWriteStream->flush();
 }
 
 - (void)dealloc
 {
-    delete pWriteStream;
-    delete pReadStream;
-    delete pIndex;
+    delete _pIndex;
 }
 @end

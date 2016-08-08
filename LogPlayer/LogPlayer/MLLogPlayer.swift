@@ -9,33 +9,56 @@
 import Foundation
 class MLLogPlayer : NSObject {
     private static let timerQueue = dispatch_queue_create("ml_timer_queue", nil)
-    var parser: MLLogParser? = nil
+    private var parser: MLLogParser? = nil
     private var timer: NSTimer? = nil
-    var currentTime: NSTimeInterval = 0
+    private var currentIndex : Int32 = -1
+    private var currentTime : NSTimeInterval = 0 {
+        didSet {
+            let index = MLLog.hash(currentTime)
+            if currentIndex != index {
+                parser?.loadLog(currentTime)
+                currentIndex = index
+            }
+        }
+    }
+    
     required init(urlString: String) {
         super.init()
         parser = MLLogParser(urlString: urlString)
     }
     
-    deinit {
-        stopTimer()
-    }
-    
     @objc private func fire(t: NSTimer) {
         currentTime += 0.5
         print("current time: \(currentTime)")
-        guard let l = parser?.log(currentTime) else {
+        let index = MLLog.hash(currentTime)
+        if currentIndex < index {
+            jump(currentTime)
+            currentIndex = index
+        }
+        guard let logs = parser?.log(currentTime) else {
             return
         }
-        sendLog(l)
+        sendLogs(logs)
     }
     
-    private func startTimer() {
+    private func sendLogs(logs: [MLLog]) {
+        //todo send:
+        for log in logs {
+            print("sendLog: \(log.timeOffset), \(log.jsonStr)")
+        }
+    }
+    
+    private func startTimer(time: NSTimeInterval = 0) {
         dispatch_async(MLLogPlayer.timerQueue) { [weak self] in
             guard let ws = self else {
                 return
             }
+            ws.currentTime = time
             ws.timer = NSTimer(timeInterval: 0.5, target: ws, selector: #selector(ws.fire(_:)), userInfo: nil, repeats: true)
+            guard let t = ws.timer else {
+                return
+            }
+            NSRunLoop.currentRunLoop().addTimer(t, forMode: NSDefaultRunLoopMode)
             NSRunLoop.currentRunLoop().run()
         }
     }
@@ -49,13 +72,21 @@ class MLLogPlayer : NSObject {
         }
     }
     
+    func test() {
+        for _ in 0...1000000 {
+            parser?.test(NSDate().timeIntervalSince1970)
+            usleep(1000)
+        }
+        parser?.stream.flush()
+        parser?.rebuildIndex()
+    }
+    
     func start() {
-        currentTime = 0
         startTimer()
     }
     
     func resume() {
-        startTimer()
+        startTimer(currentTime)
     }
     
     func jump(time: NSTimeInterval) {
@@ -64,9 +95,7 @@ class MLLogPlayer : NSObject {
             guard let logs = self?.parser?.logsBeforTime(time) else {
                 return
             }
-            for l in logs {
-                self?.sendLog(l)
-            }
+            self?.sendLogs(logs)
         }
     }
     
@@ -79,7 +108,4 @@ class MLLogPlayer : NSObject {
         stopTimer()
     }
     
-    private func sendLog(log: MLLog) {
-        //todo send:
-    }
 }
