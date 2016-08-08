@@ -8,14 +8,22 @@
 
 #import "MLFStream.h"
 #import "MyFstream.h"
+#import "FileIndex.hpp"
 
+using namespace AirCpp;
+class TimeHash {
+public:
+    
+};
+#define TimeHashIndex FileIndex<int>
 @interface MLFStream () {
     MyFstream *pReadStream;
     MyFstream *pWriteStream;
+    TimeHashIndex *pIndex;
 }
 
 @end
-
+#define IndexSize 10240
 @implementation MLFStream
 
 - (instancetype)initWithFilePath: (NSString *)path {
@@ -25,6 +33,18 @@
         pReadStream = new MyFstream(path.UTF8String, OpenFileR);
         if (!pWriteStream || !pReadStream) {
             self = nil;
+        }
+        
+        if (pReadStream->filesize > TimeHashIndex::sIndexSize) {
+            char *flag = (char *)pReadStream->read(TimeHashIndex::sIndexSize);
+            pIndex = TimeHashIndex::decode(flag, TimeHashIndex::sIndexSize);
+            if (!pIndex && pReadStream->filesize == 0) {
+                pIndex = new TimeHashIndex(IndexSize);
+                char *data = (char *)calloc(1, IndexSize);
+                pIndex->decode(data, IndexSize);
+                pWriteStream->write(data, IndexSize);
+            }
+            free(flag);
         }
     }
     return self;
@@ -37,6 +57,12 @@
     } else {
         return nil;
     }
+}
+
+- (void) jump:(int) hash {
+    const Index<int> *index = pIndex->indexOfHash(hash);
+    index->getPosition();
+    
 }
 
 
@@ -52,5 +78,6 @@
 {
     delete pWriteStream;
     delete pReadStream;
+    delete pIndex;
 }
 @end

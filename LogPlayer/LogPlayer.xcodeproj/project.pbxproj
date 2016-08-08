@@ -13,7 +13,6 @@
 		4BEC48571D547CCB00DD061D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEC48561D547CCB00DD061D /* Assets.xcassets */; };
 		4BEC485A1D547CCB00DD061D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BEC48581D547CCB00DD061D /* LaunchScreen.storyboard */; };
 		4BEC48651D547CCB00DD061D /* LogPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC48641D547CCB00DD061D /* LogPlayerTests.swift */; };
-		4BEC48701D547CDC00DD061D /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4BEC486F1D547CDC00DD061D /* 1.txt */; };
 		4BEC48721D547D4000DD061D /* MLLogParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC48711D547D4000DD061D /* MLLogParser.swift */; };
 		4BEC48741D547D5800DD061D /* MLLogPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC48731D547D5800DD061D /* MLLogPlayer.swift */; };
 		4BEC487D1D54874900DD061D /* MyFstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BEC48791D54874900DD061D /* MyFstream.cpp */; };
@@ -31,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B62B93E1D5745E10060037D /* FileIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileIndex.hpp; sourceTree = "<group>"; };
 		4BEC484C1D547CCB00DD061D /* LogPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEC484F1D547CCB00DD061D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BEC48511D547CCB00DD061D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +41,6 @@
 		4BEC48601D547CCB00DD061D /* LogPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BEC48641D547CCB00DD061D /* LogPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPlayerTests.swift; sourceTree = "<group>"; };
 		4BEC48661D547CCB00DD061D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BEC486F1D547CDC00DD061D /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 1.txt; path = "../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/Wechat/1.2/3d9f8b557d88bf30f26b6be394547ba8/Message/MessageTemp/2e7ab5255d19df7f5e6c7c273fb6c931/OpenData/1.txt"; sourceTree = "<group>"; };
 		4BEC48711D547D4000DD061D /* MLLogParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLogParser.swift; sourceTree = "<group>"; };
 		4BEC48731D547D5800DD061D /* MLLogPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLLogPlayer.swift; sourceTree = "<group>"; };
 		4BEC48751D54850200DD061D /* LogPlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LogPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -92,7 +91,6 @@
 			children = (
 				4BEC48791D54874900DD061D /* MyFstream.cpp */,
 				4BEC487A1D54874900DD061D /* MyFstream.h */,
-				4BEC486F1D547CDC00DD061D /* 1.txt */,
 				4BEC484F1D547CCB00DD061D /* AppDelegate.swift */,
 				4BEC48511D547CCB00DD061D /* ViewController.swift */,
 				4BEC48531D547CCB00DD061D /* Main.storyboard */,
@@ -104,6 +102,7 @@
 				4BEC48751D54850200DD061D /* LogPlayer-Bridging-Header.h */,
 				4BEC487F1D5487C800DD061D /* MLFStream.h */,
 				4BEC48801D5487C800DD061D /* MLFStream.mm */,
+				4B62B93E1D5745E10060037D /* FileIndex.hpp */,
 			);
 			path = LogPlayer;
 			sourceTree = "<group>";
@@ -198,7 +197,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BEC48701D547CDC00DD061D /* 1.txt in Resources */,
 				4BEC485A1D547CCB00DD061D /* LaunchScreen.storyboard in Resources */,
 				4BEC48571D547CCB00DD061D /* Assets.xcassets in Resources */,
 				4BEC48551D547CCB00DD061D /* Main.storyboard in Resources */,
@@ -421,6 +419,7 @@
 				4BEC486B1D547CCB00DD061D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BEC486C1D547CCB00DD061D /* Build configuration list for PBXNativeTarget "LogPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +428,7 @@
 				4BEC486E1D547CCB00DD061D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
