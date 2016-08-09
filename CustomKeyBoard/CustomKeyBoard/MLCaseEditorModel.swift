@@ -13,10 +13,15 @@ import UIKit
 
 class MLCaseEditorItem: NSObject {
     var hasChanged: Bool = false
-    var hasData: Bool = false {
+    
+    var data: NSAttributedString? {
         didSet {
             setValue(true, forKey: "hasChanged")
         }
+    }
+    
+    var hasData: Bool {
+        return data != nil && data!.length > 0
     }
 }
 

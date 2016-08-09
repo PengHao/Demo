@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1956E71D5A0F290075A040 /* UITextEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1956E51D5A0F290075A040 /* UITextEditView.swift */; };
+		4B1956E91D5A0FEE0075A040 /* NSAttributedString+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */; };
 		4B5EB6EC1D59B1D800964A34 /* MLCaseEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB6EA1D59B1D800964A34 /* MLCaseEditorViewController.swift */; };
 		4B5EB6F41D59B57700964A34 /* MLCaseEditorTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB6F21D59B57700964A34 /* MLCaseEditorTitleCell.swift */; };
 		4B5EB6F51D59B57700964A34 /* MLCaseEditorTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B1956E51D5A0F290075A040 /* UITextEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextEditView.swift; sourceTree = "<group>"; };
+		4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Editor.swift"; sourceTree = "<group>"; };
 		4B5EB6EA1D59B1D800964A34 /* MLCaseEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MLCaseEditorViewController.swift; path = CaseEditor/MLCaseEditorViewController.swift; sourceTree = "<group>"; };
 		4B5EB6F21D59B57700964A34 /* MLCaseEditorTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseEditorTitleCell.swift; sourceTree = "<group>"; };
 		4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseEditorTitleCell.xib; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				4BC555B01D59B040001A3A72 /* FZLTHK.TTF */,
 				4BEAF0181D598921005F6576 /* LaunchScreen.storyboard */,
 				4BEAF01B1D598921005F6576 /* Info.plist */,
+				4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */,
+				4B1956E51D5A0F290075A040 /* UITextEditView.swift */,
 				4BEAF0211D598ABC005F6576 /* MLInputAccessoryView.swift */,
 				4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */,
 				4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */,
@@ -177,8 +183,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEAF0121D598921005F6576 /* ViewController.swift in Sources */,
+				4B1956E91D5A0FEE0075A040 /* NSAttributedString+Editor.swift in Sources */,
 				4B5EB6EC1D59B1D800964A34 /* MLCaseEditorViewController.swift in Sources */,
 				4B5EB6F41D59B57700964A34 /* MLCaseEditorTitleCell.swift in Sources */,
+				4B1956E71D5A0F290075A040 /* UITextEditView.swift in Sources */,
 				4BEAF0101D598921005F6576 /* AppDelegate.swift in Sources */,
 				4B5EB7081D59DE3D00964A34 /* MLCaseItemEditorViewController.swift in Sources */,
 				4BC555B31D59B061001A3A72 /* UIFont+MLFont.swift in Sources */,

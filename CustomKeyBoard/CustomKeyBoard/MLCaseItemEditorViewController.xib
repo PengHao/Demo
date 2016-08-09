@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MLCaseItemEditorViewController" customModule="CustomKeyBoard" customModuleProvider="target">
             <connections>
+                <outlet property="textEditorBottomOffset" destination="vHQ-ym-Whg" id="2H7-wI-xIj"/>
                 <outlet property="textEditorView" destination="abQ-cw-bEq" id="5ae-De-YSC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="abQ-cw-bEq">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="abQ-cw-bEq" customClass="MLTextEditView" customModule="CustomKeyBoard" customModuleProvider="target">
                     <rect key="frame" x="12" y="24" width="576" height="552"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
