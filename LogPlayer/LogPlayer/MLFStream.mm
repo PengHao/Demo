@@ -45,6 +45,7 @@ bool Content::init(NSString *path){
         NSLog(@"initWithFilePath %@", path);
         _pIndex = TimeHashIndex::Create(path.UTF8String);
         if (_pIndex == nullptr || !_content.init(path)) {
+            NSLog(@"init failed!");
             self = nil;
         }
     }

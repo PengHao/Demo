@@ -73,11 +73,11 @@ class MLLogPlayer : NSObject {
     }
     
     func test() {
-        for _ in 0...1000000 {
+        for _ in 0...100 {
             parser?.test(NSDate().timeIntervalSince1970)
-            usleep(1000)
+            usleep(100000)
         }
-        parser?.stream.flush()
+        parser?.stream?.flush()
         parser?.rebuildIndex()
     }
     

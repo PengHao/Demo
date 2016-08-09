@@ -37,7 +37,7 @@ class MLLog {
 class MLLogParser : NSObject {
     private var downloader: MLDownloader!
     private var currentIndex: Int = 0
-    var stream: MLFStream!
+    var stream: MLFStream?
     var logs = [MLLog]()
     
     
@@ -47,7 +47,7 @@ class MLLogParser : NSObject {
         print("path = \(path)")
         stream = MLFStream(filePath: path)
         downloader = MLDownloader(urlString: urlString).receiveDataHandle({ [weak self](data) in
-            self?.stream.appendData(data)
+            self?.stream?.appendData(data)
         }).finishedHandle({
             print("download finished")
         }).failedHandle({ (error) in
@@ -58,7 +58,8 @@ class MLLogParser : NSObject {
     func log(time: NSTimeInterval) -> [MLLog] {
         var rs = [MLLog]()
         for i in 0..<logs.count {
-            let l : MLLog? = logs.count > currentIndex && abs(logs[i].timeOffset - time) < 0.5 ? logs[i] : nil
+            let off = logs[i].timeOffset - time
+            let l : MLLog? = off >= 0 && off < 0.5 ? logs[i] : nil
             if let log = l {
                 rs.append(log)
             }
@@ -89,7 +90,7 @@ extension MLLogParser {
         let t = NSString(format: "%017f", time) as String
         let j : NSString = t + "json" + t + "\n"
         if let d = j.dataUsingEncoding(NSUTF8StringEncoding) {
-            stream.appendData(d)
+            stream?.appendData(d)
         }
     }
     
