@@ -36,10 +36,10 @@ enum EN_MLCaseItem : Int {
     func title() -> String {
         let cellTitles = [
             "请输入病例标题",
-            "01.  主诉 病史",
-            "02.  查体 辅查",
-            "03.  诊断 治疗",
-            "04.  随访 讨论",
+            "主诉 病史",
+            "查体 辅查",
+            "诊断 治疗",
+            "随访 讨论",
             ]
         return cellTitles[self.rawValue]
     }

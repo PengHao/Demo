@@ -33,7 +33,7 @@ class MLCaseEditorContentCell: UITableViewCell {
         descBtn.setImage(nil, forState: .Normal)
         descBtn.setTitle(nil, forState: .Normal)
         if let item = _item {
-            titleLabel.text = item.0.title()
+            titleLabel.text = NSString(format: "%02d.  %@", item.0.rawValue, item.0.title()) as String
             if item.1.hasData {
                 descBtn.setImage(UIImage(named: "caseEditorBtn0"), forState: .Normal)
                 descBtn.setTitle(nil, forState: .Normal)

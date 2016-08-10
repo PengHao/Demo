@@ -21,12 +21,8 @@ class MLCaseEditorViewController: UIViewController {
 
         tableView.registerNib(UINib(nibName: "MLCaseEditorTitleCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MLCaseEditorTitleCell")
         tableView.registerNib(UINib(nibName: "MLCaseEditorContentCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "MLCaseEditorContentCell")
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.title = navTitle
-        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "下一步", style: .Plain, target: self, action: #selector(onNext))
+        title = navTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "下一步", style: .Plain, target: self, action: #selector(onNext))
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,7 +44,7 @@ extension MLCaseEditorViewController : UITableViewDelegate {
         let vc = MLCaseItemEditorViewController(nibName: "MLCaseItemEditorViewController", bundle: NSBundle.mainBundle())
         
         if let index = EN_MLCaseItem(rawValue: indexPath.row), let item = caseModel.items[index] {
-            vc.setEditorItem(item)
+            vc.setEditorItem(index, item: item)
         }
         
         vc.automaticallyAdjustsScrollViewInsets = true

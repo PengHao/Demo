@@ -18,7 +18,22 @@ class MLCaseItemEditorViewController: UIViewController {
         let v = MLInputAccessoryView(height: 40, _delegate: self)
         textEditorView.inputAccessoryView = v
         v.setLeftBtnVisible(false)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyBoardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: nil, style: .Plain, target: self, action: #selector(onBack))
+        navigationItem.leftBarButtonItem?.title = nil
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .Plain, target: self, action: #selector(onFinish))
+    }
+    
+    func onBack() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func onFinish() {
+        editorItem.data = textEditorView.attributedText
+        navigationController?.popViewControllerAnimated(true)
     }
     
     deinit {
@@ -29,12 +44,8 @@ class MLCaseItemEditorViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        editorItem.data = textEditorView.attributedText
-    }
-    
-    func setEditorItem(item: MLCaseEditorItem) {
+    func setEditorItem(index: EN_MLCaseItem, item: MLCaseEditorItem) {
+        title = index.title()
         editorItem = item
     }
 }
