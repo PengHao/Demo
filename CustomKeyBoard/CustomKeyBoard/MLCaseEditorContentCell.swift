@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol MLCaseEditorContentCellDelegate: NSObjectProtocol {
+@objc protocol MLEditorContentCellDelegate: NSObjectProtocol {
     func onCellHeightChanged(newHeight: CGFloat, cell: UITableViewCell)
 }
 
@@ -59,7 +59,7 @@ class MLCaseEditorContentCell: UITableViewCell {
     @IBOutlet weak var descBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
-    weak var delegate: MLCaseEditorContentCellDelegate?
+    weak var delegate: MLEditorContentCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

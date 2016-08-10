@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-
 class MLCaseEditorItem: NSObject {
     var hasChanged: Bool = false
     
@@ -64,7 +62,4 @@ class MLCaseEditorModel {
         .CaseSurge      : MLCaseEditorItem(),
         .CaseDesc       : MLCaseEditorItem()
     ]
-    
-    
-    
 }

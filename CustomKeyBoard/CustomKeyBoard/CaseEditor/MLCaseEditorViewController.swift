@@ -82,7 +82,7 @@ extension MLCaseEditorViewController : UITableViewDataSource {
     }
 }
 
-extension MLCaseEditorViewController : MLCaseEditorContentCellDelegate {
+extension MLCaseEditorViewController : MLEditorContentCellDelegate {
     func onCellHeightChanged(newHeight: CGFloat, cell: UITableViewCell) {
         guard let index = tableView.indexPathForCell(cell) else {
             return

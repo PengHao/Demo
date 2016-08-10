@@ -9,7 +9,12 @@
 import UIKit
 
 class MLCaseEditorTitleCell: UITableViewCell {
-
+    var data: MLTitleItem? {
+        didSet {
+            titleTextField.text = data?.text
+        }
+    }
+    
     @IBOutlet weak var titleTextField: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +29,12 @@ class MLCaseEditorTitleCell: UITableViewCell {
     
     func setTitle(title: String?) {
         titleTextField.placeholder = title
+    }
+    
+    weak var mlInputAccessoryView : MLInputAccessoryView? {
+        didSet {
+            mlInputAccessoryView?.setRightBtnVisible(false)
+            titleTextField.inputAccessoryView = mlInputAccessoryView
+        }
     }
 }
