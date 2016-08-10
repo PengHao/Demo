@@ -59,15 +59,18 @@ extension MLPostEditorViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let identify = EN_MLPostSection(rawValue: indexPath.section)?.identify() {
-            let cell = tableView.dequeueReusableCellWithIdentifier(identify, forIndexPath: indexPath)
+        if let identify = EN_MLPostSection(rawValue: indexPath.section)?.identify() ,
+            let cell = tableView.dequeueReusableCellWithIdentifier(identify, forIndexPath: indexPath) as? MLEditorCell{
+            
+        
+            
             if let c = cell as? MLPostVoteTableViewCell {
                 c.delegate = self
             } else if let c = cell as? MLPostEditorTableViewCell {
                 c.delegate = self
             }
-            cell.setValue(postEditorModel.data(indexPath), forKey: "data")
-            cell.setValue(MLInputAccessoryView(height: 40, _delegate: self), forKey: "mlInputAccessoryView")
+            cell.data = postEditorModel.data(indexPath)
+            cell.mlInputAccessoryView = MLInputAccessoryView(height: 40, _delegate: self)
             return cell
         }
         return UITableViewCell()
@@ -114,7 +117,11 @@ extension MLPostEditorViewController : MLPostVoteTableViewCellDelegate {
         var indexPaths = [NSIndexPath]()
         var votes = postEditorModel.data[EN_MLPostSection.PostVotes.rawValue]
         let index = votes.indexOf { (data) -> Bool in
-            return data.isEqual(cell.data)
+            if let d = cell.data {
+                return data.isEqual(d)
+            } else {
+                return false
+            }
         }
         guard let idx = index else {
             return

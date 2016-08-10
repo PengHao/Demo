@@ -11,47 +11,32 @@ protocol MLPostVoteTableViewCellDelegate : NSObjectProtocol{
     func onDelete(cell: MLPostVoteTableViewCell)
 }
 
-class MLPostVoteTableViewCell: UITableViewCell {
+class MLPostVoteTableViewCell: MLEditorCell , UITextFieldDelegate {
+    weak var delegate: MLPostVoteTableViewCellDelegate?
+    
     @IBOutlet weak var voteInputField: UITextField! {
         didSet {
             voteInputField.delegate = self
         }
     }
     
-    var data: MLVoteItem! {
-        didSet {
-            
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     @IBAction func onDelete(sender: AnyObject) {
         delegate?.onDelete(self)
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    weak var mlInputAccessoryView : MLInputAccessoryView? {
+    override var mlInputAccessoryView : MLInputAccessoryView? {
         didSet {
             mlInputAccessoryView?.setRightBtnVisible(false)
             voteInputField.inputAccessoryView = mlInputAccessoryView
         }
     }
     
-    weak var delegate: MLPostVoteTableViewCellDelegate?
-}
-
-
-extension MLPostVoteTableViewCell : UITextFieldDelegate {
-    func textFieldDidEndEditing(textField: UITextField) {
-        data.text = voteInputField.text
+    override func update() {
+        voteInputField.placeholder = data?.placeholder
+        voteInputField.text = data?.content ?? nil
+    }
+    
+    @objc func textFieldDidEndEditing(textField: UITextField) {
+        data?.content = voteInputField.text
     }
 }

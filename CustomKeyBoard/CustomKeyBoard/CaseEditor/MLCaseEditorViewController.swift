@@ -40,13 +40,12 @@ extension MLCaseEditorViewController : UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        guard caseModel.items.count > indexPath.row else {
+            return
+        }
         let vc = MLCaseItemEditorViewController(nibName: "MLCaseItemEditorViewController", bundle: NSBundle.mainBundle())
         
-        if let index = EN_MLCaseItem(rawValue: indexPath.row), let item = caseModel.items[index] {
-            vc.setEditorItem(index, item: item)
-        }
-        
+        vc.editorItem = caseModel.items[indexPath.row]
         vc.automaticallyAdjustsScrollViewInsets = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -69,14 +68,13 @@ extension MLCaseEditorViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("MLCaseEditorTitleCell", forIndexPath: indexPath) as! MLCaseEditorTitleCell
-            cell.setTitle(EN_MLCaseItem(rawValue: indexPath.row)?.title())
+            cell.data = caseModel.items[indexPath.row]
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("MLCaseEditorContentCell", forIndexPath: indexPath) as! MLCaseEditorContentCell
             cell.delegate = self
-            if let index = EN_MLCaseItem(rawValue: indexPath.row), let item = caseModel.items[index] {
-                cell.setItem(index, item: item)
-            }
+            let data : MLCaseEditorItem? = caseModel.items.count > indexPath.row ? caseModel.items[indexPath.row] : nil
+            cell.data = data
             return cell
         }
     }

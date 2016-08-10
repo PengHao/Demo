@@ -41,20 +41,45 @@ enum EN_MLPostSection : Int {
     }
 }
 
-class MLTitleItem: NSObject {
-    var text : String?
+@objc protocol MLEditorItem : NSObjectProtocol {
+    
+    var content: String? {get set}
+    var attrContent: NSAttributedString? {get set}
+    var placeholder: String? {get set}
+    optional func addChangeObserve(observer: NSObject)
+    optional func removeChangeObserve(observer: NSObject)
 }
 
-class MLVoteItem: NSObject {
-    var text : String?
+extension MLEditorItem where Self : NSObject {
+    func addChangeObserve(observer: NSObject) {
+        addObserver(observer, forKeyPath: "content", options: .New, context: nil)
+    }
+    
+    func removeChangeObserve(observer: NSObject) {
+        removeObserver(observer, forKeyPath: "content")
+    }
 }
 
-class MLPostItem: NSObject {
-    var text: NSAttributedString?
+class MLTitleItem: NSObject, MLEditorItem {
+    var content : String?
+    var attrContent: NSAttributedString?
+    var placeholder: String?
+}
+
+class MLVoteItem: NSObject, MLEditorItem {
+    var content : String?
+    var attrContent: NSAttributedString?
+    var placeholder: String?
+}
+
+class MLPostItem: NSObject, MLEditorItem {
+    var content : String?
+    var attrContent: NSAttributedString?
+    var placeholder: String?
 }
 
 class MLPostEditorModel: NSObject {
-    var data : [[AnyObject]] = [
+    var data : [[MLEditorItem]] = [
         [
             MLTitleItem()
         ],
@@ -65,7 +90,8 @@ class MLPostEditorModel: NSObject {
         ]
     ]
     
-    func data(indexPath: NSIndexPath) -> AnyObject? {
+    
+    func data(indexPath: NSIndexPath) -> MLEditorItem? {
         guard data.count > indexPath.section && data[indexPath.section].count > indexPath.row else {
             return nil
         }

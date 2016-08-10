@@ -12,28 +12,20 @@ protocol MLPostEditorTableViewCellDelegate : NSObjectProtocol {
     func onPickImage(cell: UITableViewCell)
 }
 
+class MLPostEditorTableViewCell: MLEditorCell, UITextViewDelegate {
 
-class MLPostEditorTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var textEditorView: MLTextEditView! {
-        didSet {
-            textEditorView.delegate = self
-        }
-    }
-    var data: MLPostItem! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var textEditorView: MLTextEditView!
     
     weak var delegate: MLEditorContentCellDelegate?
     
+    override func update() {
+        textEditorView.attributedText = data?.attrContent ?? nil
+        textEditorView.placeHolder = data?.placeholder
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        textEditorView.placeHolder = "输入正文内容"
         textEditorView.addObserver(self, forKeyPath: "contentSize", options: .New, context: nil)
     }
     
@@ -43,23 +35,15 @@ class MLPostEditorTableViewCell: UITableViewCell {
         }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    weak var mlInputAccessoryView : MLInputAccessoryView? {
+    override var mlInputAccessoryView : MLInputAccessoryView? {
         didSet {
             mlInputAccessoryView?.setRightBtnVisible(true)
             textEditorView.inputAccessoryView = mlInputAccessoryView
         }
     }
-}
-
-extension MLPostEditorTableViewCell : UITextViewDelegate {
-    func textViewDidEndEditing(textView: UITextView) {
-        data.text = textView.attributedText
+    
+    @objc func textViewDidEndEditing(textView: UITextView) {
+        data?.attrContent = textView.attributedText
     }
 }
 

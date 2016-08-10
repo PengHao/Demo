@@ -10,7 +10,11 @@ import UIKit
 import Foundation
 
 class MLCaseItemEditorViewController: UIViewController {
-    private var editorItem: MLCaseEditorItem!
+    var editorItem: MLCaseEditorItem! {
+        didSet {
+            title = editorItem.type.title()
+        }
+    }
     @IBOutlet weak var textEditorBottomOffset: NSLayoutConstraint!
     @IBOutlet weak var textEditorView: MLTextEditView!
     override func viewDidLoad() {
@@ -32,21 +36,12 @@ class MLCaseItemEditorViewController: UIViewController {
     }
     
     func onFinish() {
-        editorItem.data = textEditorView.attributedText
+        editorItem.attrContent = textEditorView.attributedText
         navigationController?.popViewControllerAnimated(true)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func setEditorItem(index: EN_MLCaseItem, item: MLCaseEditorItem) {
-        title = index.title()
-        editorItem = item
     }
 }
 

@@ -9,17 +9,21 @@
 import Foundation
 import UIKit
 
-class MLCaseEditorItem: NSObject {
-    var hasChanged: Bool = false
-    
-    var data: NSAttributedString? {
-        didSet {
-            setValue(true, forKey: "hasChanged")
-        }
-    }
+
+
+class MLCaseEditorItem: NSObject, MLEditorItem {
+    var content: String?
+    var attrContent: NSAttributedString?
+    var placeholder: String?
     
     var hasData: Bool {
-        return data != nil && data!.length > 0
+        return attrContent != nil && attrContent!.length > 0
+    }
+    
+    var type: EN_MLCaseItem!
+    
+    init(_type: EN_MLCaseItem) {
+        type = _type
     }
 }
 
@@ -55,11 +59,11 @@ class MLCaseEditorModel {
     init() {
         
     }
-    var items : [EN_MLCaseItem : MLCaseEditorItem] = [
-        .CaseTitle      : MLCaseEditorItem(),
-        .CaseHistroy    : MLCaseEditorItem(),
-        .CaseCheck      : MLCaseEditorItem(),
-        .CaseSurge      : MLCaseEditorItem(),
-        .CaseDesc       : MLCaseEditorItem()
+    var items : [MLCaseEditorItem] = [
+        MLCaseEditorItem(_type: .CaseTitle),
+        MLCaseEditorItem(_type: .CaseHistroy),
+        MLCaseEditorItem(_type: .CaseCheck),
+        MLCaseEditorItem(_type: .CaseSurge),
+        MLCaseEditorItem(_type: .CaseDesc)
     ]
 }
