@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include <string.h>
-
 #include "AirConnection.h"
 #include "AirClient.hpp"
 #include "AirServer.hpp"
+#include "Base.pb.h"
 void startConnect() {
     AirCpp::Client *c = new AirCpp::Client();
     
@@ -24,6 +24,7 @@ void startConnect() {
             printf("size = %lld, \n%s", size, c_data);
             return size;
         });
+        
         
         std::string post = "POST /index.php HTTP/1.1\r\nHost:www.baidu.com\r\nConnection : Keep-Alive\r\nCache-Control : no-cache\r\nContent-Type : text/html\r\nContent-Length : 33\r\n\r\n{\"a\":1,\"b\":2,\"c\":3,\"d\":4,\"e\":5}\r\n\r\n";
         long long size = con->send(post.c_str(), post.length());
@@ -42,6 +43,17 @@ void startListen() {
 
 
 int main(int argc, const char * argv[]) {
-//    startListen();
+
+    Package *p = new Package();
+    auto msg = p->mutable_msg();
+    msg->set_d(123);
+    p->has_msg();
+    p->msg();
+    std::string v = p->SerializeAsString();
+    Package *p1 = new Package();
+    p1->ParseFromString(v);
+    auto msg1 = p1->msg();
+    printf("%d", msg1.d());
+
     startConnect();
 }
