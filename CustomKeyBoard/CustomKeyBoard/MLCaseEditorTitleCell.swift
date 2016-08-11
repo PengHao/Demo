@@ -8,21 +8,47 @@
 
 import UIKit
 
-class MLCaseEditorTitleCell: UITableViewCell {
 
-    @IBOutlet weak var titleTextField: UITextField!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+class MLEditorCell: UITableViewCell {
+    var data: MLEditorItem? {
+        didSet {
+            oldValue?.removeChangeObserve?(self)
+            data?.addChangeObserve?(self)
+            update()
+        }
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    var mlInputAccessoryView : MLInputAccessoryView?
+    
+    func update() {
+        
+    }
+}
 
-        // Configure the view for the selected state
+
+
+class MLCaseEditorTitleCell : MLEditorCell{
+    override func update() {
+        if let c = data?.content {
+            titleTextField.text = c
+        }
+        titleTextField.placeholder = data?.placeholder
     }
     
-    func setTitle(title: String?) {
-        titleTextField.placeholder = title
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
+    
+    override var mlInputAccessoryView : MLInputAccessoryView? {
+        set {
+            titleTextField.inputAccessoryView = newValue
+            newValue?.setRightBtnVisible(false)
+        }
+        
+        get {
+            return titleTextField.inputAccessoryView as? MLInputAccessoryView
+        }
+    }
+    
+    @IBOutlet weak var titleTextField: UITextField!
 }

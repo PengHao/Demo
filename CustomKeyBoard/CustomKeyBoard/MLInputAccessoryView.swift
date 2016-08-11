@@ -29,6 +29,7 @@ class MLInputAccessoryView: UIView {
     
     init(height: CGFloat, _delegate: MLInputAccessoryViewDelegate?) {
         super.init(frame: CGRectMake(0, 0, 0, height))
+        delegate = _delegate
         addSubview(_rightBtn)
         addSubview(_leftBtn)
         addSubview(_topLine)
@@ -54,6 +55,10 @@ class MLInputAccessoryView: UIView {
     
     func setLeftBtnVisible(visible: Bool) {
         _leftBtn.hidden = !visible
+    }
+    
+    func setRightBtnVisible(visible: Bool) {
+        _rightBtn.hidden = !visible
     }
     
     

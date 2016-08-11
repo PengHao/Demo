@@ -18,6 +18,13 @@
 		4B5EB7031D59D4FB00964A34 /* MLCaseEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */; };
 		4B5EB7081D59DE3D00964A34 /* MLCaseItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */; };
 		4B5EB7091D59DE3D00964A34 /* MLCaseItemEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB7071D59DE3D00964A34 /* MLCaseItemEditorViewController.xib */; };
+		4B7BF6A91D5AC3E0007F7DED /* MLPostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */; };
+		4B7BF6AA1D5AC3E0007F7DED /* MLPostEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */; };
+		4B7BF6AD1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */; };
+		4B7BF6AE1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */; };
+		4B7BF6B11D5ACF41007F7DED /* MLPostVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */; };
+		4B7BF6B21D5ACF41007F7DED /* MLPostVoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */; };
+		4B7BF6B41D5ACFBC007F7DED /* MLPostEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */; };
 		4BC555B11D59B040001A3A72 /* FZLTHK.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4BC555B01D59B040001A3A72 /* FZLTHK.TTF */; };
 		4BC555B31D59B061001A3A72 /* UIFont+MLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */; };
 		4BEAF0101D598921005F6576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEAF00F1D598921005F6576 /* AppDelegate.swift */; };
@@ -40,6 +47,13 @@
 		4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseEditorModel.swift; sourceTree = "<group>"; };
 		4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseItemEditorViewController.swift; sourceTree = "<group>"; };
 		4B5EB7071D59DE3D00964A34 /* MLCaseItemEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseItemEditorViewController.xib; sourceTree = "<group>"; };
+		4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorViewController.swift; sourceTree = "<group>"; };
+		4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostEditorViewController.xib; sourceTree = "<group>"; };
+		4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorTableViewCell.swift; sourceTree = "<group>"; };
+		4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostEditorTableViewCell.xib; sourceTree = "<group>"; };
+		4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostVoteTableViewCell.swift; sourceTree = "<group>"; };
+		4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostVoteTableViewCell.xib; sourceTree = "<group>"; };
+		4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorModel.swift; sourceTree = "<group>"; };
 		4BC555B01D59B040001A3A72 /* FZLTHK.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZLTHK.TTF; sourceTree = "<group>"; };
 		4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MLFont.swift"; sourceTree = "<group>"; };
 		4BEAF00C1D598921005F6576 /* CustomKeyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKeyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +105,7 @@
 				4BEAF01B1D598921005F6576 /* Info.plist */,
 				4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */,
 				4B1956E51D5A0F290075A040 /* UITextEditView.swift */,
+				4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */,
 				4BEAF0211D598ABC005F6576 /* MLInputAccessoryView.swift */,
 				4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */,
 				4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */,
@@ -101,7 +116,13 @@
 				4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */,
 				4B5EB6FA1D59B59F00964A34 /* MLCaseEditorContentCell.swift */,
 				4B5EB6FB1D59B59F00964A34 /* MLCaseEditorContentCell.xib */,
-				4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */,
+				4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */,
+				4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */,
+				4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */,
+				4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */,
+				4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */,
+				4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */,
+				4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */,
 			);
 			path = CustomKeyBoard;
 			sourceTree = "<group>";
@@ -165,7 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BEAF01A1D598921005F6576 /* LaunchScreen.storyboard in Resources */,
+				4B7BF6AE1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib in Resources */,
 				4B5EB7091D59DE3D00964A34 /* MLCaseItemEditorViewController.xib in Resources */,
+				4B7BF6AA1D5AC3E0007F7DED /* MLPostEditorViewController.xib in Resources */,
+				4B7BF6B21D5ACF41007F7DED /* MLPostVoteTableViewCell.xib in Resources */,
 				4BC555B11D59B040001A3A72 /* FZLTHK.TTF in Resources */,
 				4B5EB6F51D59B57700964A34 /* MLCaseEditorTitleCell.xib in Resources */,
 				4BEAF0171D598921005F6576 /* Assets.xcassets in Resources */,
@@ -182,14 +206,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B7BF6A91D5AC3E0007F7DED /* MLPostEditorViewController.swift in Sources */,
 				4BEAF0121D598921005F6576 /* ViewController.swift in Sources */,
 				4B1956E91D5A0FEE0075A040 /* NSAttributedString+Editor.swift in Sources */,
 				4B5EB6EC1D59B1D800964A34 /* MLCaseEditorViewController.swift in Sources */,
 				4B5EB6F41D59B57700964A34 /* MLCaseEditorTitleCell.swift in Sources */,
+				4B7BF6B41D5ACFBC007F7DED /* MLPostEditorModel.swift in Sources */,
+				4B7BF6AD1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift in Sources */,
 				4B1956E71D5A0F290075A040 /* UITextEditView.swift in Sources */,
 				4BEAF0101D598921005F6576 /* AppDelegate.swift in Sources */,
 				4B5EB7081D59DE3D00964A34 /* MLCaseItemEditorViewController.swift in Sources */,
 				4BC555B31D59B061001A3A72 /* UIFont+MLFont.swift in Sources */,
+				4B7BF6B11D5ACF41007F7DED /* MLPostVoteTableViewCell.swift in Sources */,
 				4BEAF0221D598ABC005F6576 /* MLInputAccessoryView.swift in Sources */,
 				4B5EB6FC1D59B59F00964A34 /* MLCaseEditorContentCell.swift in Sources */,
 				4B5EB7031D59D4FB00964A34 /* MLCaseEditorModel.swift in Sources */,

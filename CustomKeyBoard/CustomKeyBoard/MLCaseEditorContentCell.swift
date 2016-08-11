@@ -8,49 +8,25 @@
 
 import UIKit
 
-@objc protocol MLCaseEditorContentCellDelegate: NSObjectProtocol {
+@objc protocol MLEditorContentCellDelegate: NSObjectProtocol {
     func onCellHeightChanged(newHeight: CGFloat, cell: UITableViewCell)
 }
 
-class MLCaseEditorContentCell: UITableViewCell {
-    
-    private var _item: (EN_MLCaseItem, MLCaseEditorItem)? {
-        didSet {
-            oldValue?.1.removeObserver(self, forKeyPath: "hasChanged")
-            if let item = _item {
-                item.1.addObserver(self, forKeyPath: "hasChanged", options: .New, context: nil)
-            }
-            refresh()
-        }
-    }
-    
-    deinit {
-        _item?.1.removeObserver(self, forKeyPath: "hasChanged")
-    }
-    
-    private func refresh() {
-        
+class MLCaseEditorContentCell: MLEditorCell {
+    override func update() {
         descBtn.setImage(nil, forState: .Normal)
         descBtn.setTitle(nil, forState: .Normal)
-        if let item = _item {
-            titleLabel.text = item.0.title()
-            if item.1.hasData {
+        if let item = data as? MLCaseEditorItem {
+            titleLabel.text = NSString(format: "%02d.  %@", item.type.rawValue, item.type.title()) as String
+            if item.hasData {
                 descBtn.setImage(UIImage(named: "caseEditorBtn0"), forState: .Normal)
                 descBtn.setTitle(nil, forState: .Normal)
             } else {
-                let d = item.0.desc()
+                let d = item.type.desc()
                 descBtn.setTitle(d.0, forState: .Normal)
                 descBtn.setTitleColor(d.1, forState: .Normal)
                 descBtn.setImage(nil, forState: .Normal)
             }
-        }
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "hasChanged" {
-            dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                self?.refresh()
-            })
         }
     }
 
@@ -59,10 +35,9 @@ class MLCaseEditorContentCell: UITableViewCell {
     @IBOutlet weak var descBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     
-    weak var delegate: MLCaseEditorContentCellDelegate?
+    weak var delegate: MLEditorContentCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     @IBAction func onDescBtn() {
@@ -72,14 +47,7 @@ class MLCaseEditorContentCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
-    func setItem(index: EN_MLCaseItem, item: MLCaseEditorItem) {
-        _item = (index, item)
-    }
-    
     
     func setContent() {
         contentHeight.constant = 100

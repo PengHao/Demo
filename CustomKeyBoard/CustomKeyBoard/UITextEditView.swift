@@ -35,10 +35,52 @@ class CustomTextAttachment : NSTextAttachment {
 
 
 class MLTextEditView: UITextView {
+    
+    private lazy var placeHolderLabel : UILabel = {
+        let l = UILabel(frame: CGRectZero)
+        l.font = self.font
+        l.textColor = UIColor.grayColor()
+        self.addSubview(l)
+        NSNotificationCenter.defaultCenter().addObserverForName(UITextViewTextDidBeginEditingNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { [weak self] (notification) in
+            l.hidden = true
+            })
+        NSNotificationCenter.defaultCenter().addObserverForName(UITextViewTextDidEndEditingNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { [weak self] (notification) in
+            self?._updatePlaceHolder ()
+            })
+        return l
+    }()
+    
     override var contentSize: CGSize {
         didSet {
-//            frame.size.height = contentSize.height
-            NSNotificationCenter.defaultCenter().postNotificationName("UITextEditViewChanged", object: nil)
+            
+        }
+    }
+    
+    private func _updatePlaceHolder () {
+        if placeHolder != nil && attributedText.length == 0 && text.characters.count == 0 {
+            placeHolderLabel.text = placeHolder
+            placeHolderLabel.hidden = false
+            placeHolderLabel.frame = CGRectMake(8, contentInset.top, bounds.size.width, placeHolderLabel.font.pointSize)
+        } else {
+            placeHolderLabel.hidden = true
+        }
+    }
+    
+    var placeHolder : String? {
+        didSet {
+            _updatePlaceHolder()
+        }
+    }
+    
+    override var attributedText: NSAttributedString! {
+        didSet {
+            _updatePlaceHolder()
+        }
+    }
+    
+    override var text: String! {
+        didSet {
+            _updatePlaceHolder()
         }
     }
     
