@@ -11,11 +11,17 @@
 
 #include <iostream>
 #include "AirSocket.h"
-typedef std::function< size_t()> ReseiveHandler;
+#include "AirSocketConfig.h"
+#include "AirPackage.hpp"
+#include "Base.pb.h"
+
+
+
 namespace AirCpp{
+#define TEMP_BUFFER_SIZE 1024
     class Client;
     class Listener;
-    class Server;
+    class Server;    
     class Connection {
         friend Client;
         friend Listener;
@@ -25,17 +31,32 @@ namespace AirCpp{
         int m_iDomainType;
         int m_iDataType;
         int m_iProtocol;
-        ReseiveHandler m_fReseiveHandler;
+        CircleBuffer *m_pReadBuffer;
         
+        typedef std::function< void (const PBPackage * , const Connection *)> ReseiveHandler;
+        CircleBuffer *m_pWriteBuffer;
+        
+        ReseiveHandler m_fReseiveHandler;
+        char m_strTempBuffer[TEMP_BUFFER_SIZE];
         protected:
         ~Connection() {
             delete m_pSocket;
+            delete m_pReadBuffer;
+            delete m_pWriteBuffer;
         }
         
-        void handleReceive() {
-            if (m_fReseiveHandler != nullptr) {
-                m_fReseiveHandler();
+        void receive() {
+            memset(m_strTempBuffer, 0, TEMP_BUFFER_SIZE);
+            long long size = m_pSocket->read(m_strTempBuffer, TEMP_BUFFER_SIZE);
+            if (size <= 0) {
+                return;
             }
+            Package::FillData(size, m_strTempBuffer, [&](const Package pakage) {
+                //parser Msg
+                PBPackage *p = new PBPackage();
+                p->ParseFromArray(pakage.m_pData, pakage.m_ullSize);
+                m_fReseiveHandler(p, this);
+            });
         }
         
         Connection(int domainType, int dataType, int protocol):
@@ -43,14 +64,19 @@ namespace AirCpp{
         m_iDataType(dataType),
         m_iProtocol(protocol),
         m_fReseiveHandler(nullptr),
-        m_pSocket(nullptr)
+        m_pSocket(nullptr),
+        m_pReadBuffer(new CircleBuffer(READ_BUFFER_SIZE)),
+        m_pWriteBuffer(new CircleBuffer(WRITE_BUFFER_SIZE))
         {
+            
         }
         
         
         Connection(Socket *ps):
         m_fReseiveHandler(nullptr),
-        m_pSocket(ps)
+        m_pSocket(ps),
+        m_pReadBuffer(new CircleBuffer(READ_BUFFER_SIZE)),
+        m_pWriteBuffer(new CircleBuffer(WRITE_BUFFER_SIZE))
         {
             m_fReseiveHandler = nullptr;
         }

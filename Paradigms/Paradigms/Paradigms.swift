@@ -11,6 +11,12 @@ import Foundation
 class Paradigms<T> {
     let s = "123"
     var t: T?
+    init() {
+//        t?.test()
+    }
+    func a()  {
+        
+    }
 }
 
 protocol Proto {
@@ -70,7 +76,27 @@ class B : Proto2 {
     }
 }
 
+
+func genericFunc<T>(ts : [T]) -> Bool {
+    return true; // not very exciting
+}
+
+protocol EquatableSelf {
+    func equals(other : Self) -> Bool
+}
+//https://developer.apple.com/videos/play/wwdc2015/408/  面向协议编程
+
+// By adopting `EquatableSelf`, every occurrence of `Self` in the protocol gets
+// semantically replaced with `ImplicitStruct`
+struct ImplicitStruct : EquatableSelf {
+    var val : Int64
+    func equals(other: ImplicitStruct) -> Bool {
+        return self.val == other.val;
+    }
+}
+
 func test() {
+    //偏特
     let pA = Paradigms<A>()
     pA.t = A()
     pA.testProto()
