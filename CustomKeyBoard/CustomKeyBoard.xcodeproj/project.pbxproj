@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B1956E71D5A0F290075A040 /* UITextEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1956E51D5A0F290075A040 /* UITextEditView.swift */; };
+		4B1956E91D5A0FEE0075A040 /* NSAttributedString+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */; };
+		4B5EB6EC1D59B1D800964A34 /* MLCaseEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB6EA1D59B1D800964A34 /* MLCaseEditorViewController.swift */; };
+		4B5EB6F41D59B57700964A34 /* MLCaseEditorTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB6F21D59B57700964A34 /* MLCaseEditorTitleCell.swift */; };
+		4B5EB6F51D59B57700964A34 /* MLCaseEditorTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */; };
+		4B5EB6FC1D59B59F00964A34 /* MLCaseEditorContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB6FA1D59B59F00964A34 /* MLCaseEditorContentCell.swift */; };
+		4B5EB6FD1D59B59F00964A34 /* MLCaseEditorContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB6FB1D59B59F00964A34 /* MLCaseEditorContentCell.xib */; };
+		4B5EB7011D59B6D400964A34 /* MLCaseEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB6FF1D59B6D400964A34 /* MLCaseEditorViewController.xib */; };
+		4B5EB7031D59D4FB00964A34 /* MLCaseEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */; };
+		4B5EB7081D59DE3D00964A34 /* MLCaseItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */; };
+		4B5EB7091D59DE3D00964A34 /* MLCaseItemEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B5EB7071D59DE3D00964A34 /* MLCaseItemEditorViewController.xib */; };
+		4B7BF6A91D5AC3E0007F7DED /* MLPostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */; };
+		4B7BF6AA1D5AC3E0007F7DED /* MLPostEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */; };
+		4B7BF6AD1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */; };
+		4B7BF6AE1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */; };
+		4B7BF6B11D5ACF41007F7DED /* MLPostVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */; };
+		4B7BF6B21D5ACF41007F7DED /* MLPostVoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */; };
+		4B7BF6B41D5ACFBC007F7DED /* MLPostEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */; };
+		4BC555B11D59B040001A3A72 /* FZLTHK.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4BC555B01D59B040001A3A72 /* FZLTHK.TTF */; };
+		4BC555B31D59B061001A3A72 /* UIFont+MLFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */; };
+		4BEAF0101D598921005F6576 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEAF00F1D598921005F6576 /* AppDelegate.swift */; };
+		4BEAF0121D598921005F6576 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEAF0111D598921005F6576 /* ViewController.swift */; };
+		4BEAF0151D598921005F6576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BEAF0131D598921005F6576 /* Main.storyboard */; };
+		4BEAF0171D598921005F6576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BEAF0161D598921005F6576 /* Assets.xcassets */; };
+		4BEAF01A1D598921005F6576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BEAF0181D598921005F6576 /* LaunchScreen.storyboard */; };
+		4BEAF0221D598ABC005F6576 /* MLInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEAF0211D598ABC005F6576 /* MLInputAccessoryView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4B1956E51D5A0F290075A040 /* UITextEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextEditView.swift; sourceTree = "<group>"; };
+		4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Editor.swift"; sourceTree = "<group>"; };
+		4B5EB6EA1D59B1D800964A34 /* MLCaseEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MLCaseEditorViewController.swift; path = CaseEditor/MLCaseEditorViewController.swift; sourceTree = "<group>"; };
+		4B5EB6F21D59B57700964A34 /* MLCaseEditorTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseEditorTitleCell.swift; sourceTree = "<group>"; };
+		4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseEditorTitleCell.xib; sourceTree = "<group>"; };
+		4B5EB6FA1D59B59F00964A34 /* MLCaseEditorContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseEditorContentCell.swift; sourceTree = "<group>"; };
+		4B5EB6FB1D59B59F00964A34 /* MLCaseEditorContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseEditorContentCell.xib; sourceTree = "<group>"; };
+		4B5EB6FF1D59B6D400964A34 /* MLCaseEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseEditorViewController.xib; sourceTree = "<group>"; };
+		4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseEditorModel.swift; sourceTree = "<group>"; };
+		4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLCaseItemEditorViewController.swift; sourceTree = "<group>"; };
+		4B5EB7071D59DE3D00964A34 /* MLCaseItemEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLCaseItemEditorViewController.xib; sourceTree = "<group>"; };
+		4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorViewController.swift; sourceTree = "<group>"; };
+		4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostEditorViewController.xib; sourceTree = "<group>"; };
+		4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorTableViewCell.swift; sourceTree = "<group>"; };
+		4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostEditorTableViewCell.xib; sourceTree = "<group>"; };
+		4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostVoteTableViewCell.swift; sourceTree = "<group>"; };
+		4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MLPostVoteTableViewCell.xib; sourceTree = "<group>"; };
+		4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLPostEditorModel.swift; sourceTree = "<group>"; };
+		4BC555B01D59B040001A3A72 /* FZLTHK.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FZLTHK.TTF; sourceTree = "<group>"; };
+		4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MLFont.swift"; sourceTree = "<group>"; };
+		4BEAF00C1D598921005F6576 /* CustomKeyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKeyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BEAF00F1D598921005F6576 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4BEAF0111D598921005F6576 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4BEAF0141D598921005F6576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4BEAF0161D598921005F6576 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4BEAF0191D598921005F6576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4BEAF01B1D598921005F6576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BEAF0211D598ABC005F6576 /* MLInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLInputAccessoryView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BEAF0091D598921005F6576 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BEAF0031D598921005F6576 = {
+			isa = PBXGroup;
+			children = (
+				4BEAF00E1D598921005F6576 /* CustomKeyBoard */,
+				4BEAF00D1D598921005F6576 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4BEAF00D1D598921005F6576 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BEAF00C1D598921005F6576 /* CustomKeyBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BEAF00E1D598921005F6576 /* CustomKeyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				4BEAF00F1D598921005F6576 /* AppDelegate.swift */,
+				4BEAF0111D598921005F6576 /* ViewController.swift */,
+				4BEAF0131D598921005F6576 /* Main.storyboard */,
+				4BEAF0161D598921005F6576 /* Assets.xcassets */,
+				4BC555B01D59B040001A3A72 /* FZLTHK.TTF */,
+				4BEAF0181D598921005F6576 /* LaunchScreen.storyboard */,
+				4BEAF01B1D598921005F6576 /* Info.plist */,
+				4B1956E81D5A0FEE0075A040 /* NSAttributedString+Editor.swift */,
+				4B1956E51D5A0F290075A040 /* UITextEditView.swift */,
+				4B5EB7021D59D4FB00964A34 /* MLCaseEditorModel.swift */,
+				4BEAF0211D598ABC005F6576 /* MLInputAccessoryView.swift */,
+				4BC555B21D59B061001A3A72 /* UIFont+MLFont.swift */,
+				4B5EB7061D59DE3D00964A34 /* MLCaseItemEditorViewController.swift */,
+				4B5EB7071D59DE3D00964A34 /* MLCaseItemEditorViewController.xib */,
+				4B5EB6EA1D59B1D800964A34 /* MLCaseEditorViewController.swift */,
+				4B5EB6FF1D59B6D400964A34 /* MLCaseEditorViewController.xib */,
+				4B5EB6F21D59B57700964A34 /* MLCaseEditorTitleCell.swift */,
+				4B5EB6F31D59B57700964A34 /* MLCaseEditorTitleCell.xib */,
+				4B5EB6FA1D59B59F00964A34 /* MLCaseEditorContentCell.swift */,
+				4B5EB6FB1D59B59F00964A34 /* MLCaseEditorContentCell.xib */,
+				4B7BF6AF1D5ACF41007F7DED /* MLPostVoteTableViewCell.swift */,
+				4B7BF6B01D5ACF41007F7DED /* MLPostVoteTableViewCell.xib */,
+				4B7BF6AB1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift */,
+				4B7BF6AC1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib */,
+				4B7BF6A71D5AC3E0007F7DED /* MLPostEditorViewController.swift */,
+				4B7BF6A81D5AC3E0007F7DED /* MLPostEditorViewController.xib */,
+				4B7BF6B31D5ACFBC007F7DED /* MLPostEditorModel.swift */,
+			);
+			path = CustomKeyBoard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4BEAF00B1D598921005F6576 /* CustomKeyBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BEAF01E1D598921005F6576 /* Build configuration list for PBXNativeTarget "CustomKeyBoard" */;
+			buildPhases = (
+				4BEAF0081D598921005F6576 /* Sources */,
+				4BEAF0091D598921005F6576 /* Frameworks */,
+				4BEAF00A1D598921005F6576 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CustomKeyBoard;
+			productName = CustomKeyBoard;
+			productReference = 4BEAF00C1D598921005F6576 /* CustomKeyBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4BEAF0041D598921005F6576 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = WolfPeng;
+				TargetAttributes = {
+					4BEAF00B1D598921005F6576 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 4BEAF0071D598921005F6576 /* Build configuration list for PBXProject "CustomKeyBoard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4BEAF0031D598921005F6576;
+			productRefGroup = 4BEAF00D1D598921005F6576 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4BEAF00B1D598921005F6576 /* CustomKeyBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4BEAF00A1D598921005F6576 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BEAF01A1D598921005F6576 /* LaunchScreen.storyboard in Resources */,
+				4B7BF6AE1D5ACED7007F7DED /* MLPostEditorTableViewCell.xib in Resources */,
+				4B5EB7091D59DE3D00964A34 /* MLCaseItemEditorViewController.xib in Resources */,
+				4B7BF6AA1D5AC3E0007F7DED /* MLPostEditorViewController.xib in Resources */,
+				4B7BF6B21D5ACF41007F7DED /* MLPostVoteTableViewCell.xib in Resources */,
+				4BC555B11D59B040001A3A72 /* FZLTHK.TTF in Resources */,
+				4B5EB6F51D59B57700964A34 /* MLCaseEditorTitleCell.xib in Resources */,
+				4BEAF0171D598921005F6576 /* Assets.xcassets in Resources */,
+				4B5EB6FD1D59B59F00964A34 /* MLCaseEditorContentCell.xib in Resources */,
+				4BEAF0151D598921005F6576 /* Main.storyboard in Resources */,
+				4B5EB7011D59B6D400964A34 /* MLCaseEditorViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BEAF0081D598921005F6576 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B7BF6A91D5AC3E0007F7DED /* MLPostEditorViewController.swift in Sources */,
+				4BEAF0121D598921005F6576 /* ViewController.swift in Sources */,
+				4B1956E91D5A0FEE0075A040 /* NSAttributedString+Editor.swift in Sources */,
+				4B5EB6EC1D59B1D800964A34 /* MLCaseEditorViewController.swift in Sources */,
+				4B5EB6F41D59B57700964A34 /* MLCaseEditorTitleCell.swift in Sources */,
+				4B7BF6B41D5ACFBC007F7DED /* MLPostEditorModel.swift in Sources */,
+				4B7BF6AD1D5ACED7007F7DED /* MLPostEditorTableViewCell.swift in Sources */,
+				4B1956E71D5A0F290075A040 /* UITextEditView.swift in Sources */,
+				4BEAF0101D598921005F6576 /* AppDelegate.swift in Sources */,
+				4B5EB7081D59DE3D00964A34 /* MLCaseItemEditorViewController.swift in Sources */,
+				4BC555B31D59B061001A3A72 /* UIFont+MLFont.swift in Sources */,
+				4B7BF6B11D5ACF41007F7DED /* MLPostVoteTableViewCell.swift in Sources */,
+				4BEAF0221D598ABC005F6576 /* MLInputAccessoryView.swift in Sources */,
+				4B5EB6FC1D59B59F00964A34 /* MLCaseEditorContentCell.swift in Sources */,
+				4B5EB7031D59D4FB00964A34 /* MLCaseEditorModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4BEAF0131D598921005F6576 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BEAF0141D598921005F6576 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4BEAF0181D598921005F6576 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BEAF0191D598921005F6576 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4BEAF01C1D598921005F6576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4BEAF01D1D598921005F6576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4BEAF01F1D598921005F6576 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CustomKeyBoard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfpeng.CustomKeyBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4BEAF0201D598921005F6576 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CustomKeyBoard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfpeng.CustomKeyBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BEAF0071D598921005F6576 /* Build configuration list for PBXProject "CustomKeyBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BEAF01C1D598921005F6576 /* Debug */,
+				4BEAF01D1D598921005F6576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BEAF01E1D598921005F6576 /* Build configuration list for PBXNativeTarget "CustomKeyBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BEAF01F1D598921005F6576 /* Debug */,
+				4BEAF0201D598921005F6576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4BEAF0041D598921005F6576 /* Project object */;
+}

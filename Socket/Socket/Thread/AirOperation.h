@@ -30,8 +30,6 @@ namespace AirCpp{
             
         }
         
-//        operator ==
-        
         Operation() :
         concurrence_index(0),
         func_type(0) {

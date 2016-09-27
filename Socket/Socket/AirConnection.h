@@ -15,8 +15,7 @@
 #include "AirPackage.hpp"
 #include "Base.pb.h"
 
-
-
+typedef std::function< size_t()> ReseiveHandler;
 namespace AirCpp{
 #define TEMP_BUFFER_SIZE 1024
     class Client;
@@ -32,7 +31,6 @@ namespace AirCpp{
         int m_iDataType;
         int m_iProtocol;
         CircleBuffer *m_pReadBuffer;
-        
         typedef std::function< void (const PBPackage * , const Connection *)> ReseiveHandler;
         CircleBuffer *m_pWriteBuffer;
         

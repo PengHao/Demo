@@ -19,91 +19,56 @@
 
 
 namespace AirCpp {
-    class AirThreadLock{
+    class Lock{
     protected:
         
         pthread_mutex_t mutex;
     public:
-        int init(){
-            return pthread_mutex_init(&mutex, NULL);
-        }
+        int init();
         
-        int lock(){
-            return pthread_mutex_lock(&mutex);
-        }
+        int lock();
         
-        int unlock(){
-            return pthread_mutex_unlock(&mutex);
-        }
+        int unlock();
         
-        int try_lock(){
-            return pthread_mutex_trylock(&mutex);
-        }
+        int try_lock();
         
-        int try_destroy(){
-            return pthread_mutex_destroy(&mutex);
-        }
+        int try_destroy();
     };
     
     
-    class AirThreadSemaphore{
+    class Semaphore{
     protected:
         sem_t thread_sem;
     public:
-        int init(bool shared){
-            this->destroy();
-            return sem_init(&thread_sem, shared, 0);
-        }
+        int init(bool shared);
         
-        int wait(){
-            return sem_wait(&thread_sem);
-        }
+        int wait();
         
-        int post(){
-            return sem_post(&thread_sem);
-        }
+        int post();
         
-        int destroy(){
-            return sem_destroy(&thread_sem);
-        }
+        int destroy();
         
-        ~AirThreadSemaphore(){
-            this->destroy();
-        }
+        ~Semaphore();
     };
     
     
-    class AirThreadRWLock{
+    class RWLock{
     protected:
         pthread_rwlock_t rwlock;
     public:
-        int init(){
-            return pthread_rwlock_init(&rwlock, NULL);
-        }
+        int init();
         
-        int rdlock(){
-            return pthread_rwlock_rdlock(&rwlock);
-        }
+        int rdlock();
         
-        int wrlock(){
-            return pthread_rwlock_wrlock(&rwlock);
-        }
+        int wrlock();
         
-        int try_rdlock(){
-            return pthread_rwlock_tryrdlock(&rwlock);
-        }
+        int try_rdlock();
         
-        int try_wrlock(){
-            return pthread_rwlock_trywrlock(&rwlock);
-        }
+        int try_wrlock();
         
-        int unlock(){
-            return pthread_rwlock_unlock(&rwlock);
-        }
+        int unlock();
         
-        int destroy(){
-            return pthread_rwlock_destroy(&rwlock);
-        }
+        int destroy();
     };
 }
 #endif /* AirThreadLock_hpp */

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MLCaseItemEditorViewController" customModule="CustomKeyBoard" customModuleProvider="target">
+            <connections>
+                <outlet property="textEditorBottomOffset" destination="vHQ-ym-Whg" id="2H7-wI-xIj"/>
+                <outlet property="textEditorView" destination="abQ-cw-bEq" id="5ae-De-YSC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="abQ-cw-bEq" customClass="MLTextEditView" customModule="CustomKeyBoard" customModuleProvider="target">
+                    <rect key="frame" x="12" y="24" width="576" height="552"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="abQ-cw-bEq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="2ZX-uB-oRv"/>
+                <constraint firstAttribute="trailing" secondItem="abQ-cw-bEq" secondAttribute="trailing" constant="12" id="Vyh-b1-caK"/>
+                <constraint firstItem="abQ-cw-bEq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="24" id="Z9n-G0-5vQ"/>
+                <constraint firstAttribute="bottom" secondItem="abQ-cw-bEq" secondAttribute="bottom" constant="24" id="vHQ-ym-Whg"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
