@@ -9,19 +9,18 @@
 import Foundation
 import CoreData
 
-public enum MLSynchronousStatus : Int16 {
-    case normal = 0             //正常
-    case committing = 1         //正在提交
-    case updating = 2           //正在更新
-    case deletting = 3          //正在删除
-}
-
 extension NSManagedObject {
-    typealias SetPropertiesValuesCallback = (NSEntityDescription) -> NSManagedObject?
+    typealias InsertOrUpdateCallBack = (NSEntityDescription) -> NSManagedObject?
+/**
+ *  moc:            The NSManagedObjectContext instance witch you want to creat entity in it
+ *  entityName:     The Entiti'es Name
+ *  info:           The data to set in the Entity, it should be a dictionary. we will access its data by use the Entiti'es properties' name as the key or the keyMap,s value of info
+ *  checkCallBack:  This callback block is used to get the Entity instance by select or insert.
+**/
     
-    class func CreateWithMoc(_ moc: NSManagedObjectContext, entityName: String, info: AnyObject, keyMap: [String: String]? = nil, checkCallBack: SetPropertiesValuesCallback) -> NSManagedObject? {
+    class func CreateWithMoc(_ moc: NSManagedObjectContext, entityName: String, info: AnyObject, keyMap: [String: String]? = nil, insertOrUpdateCallBack: InsertOrUpdateCallBack) -> NSManagedObject? {
         var _optionPropertiesList = [String]();
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: moc), let obj = checkCallBack(entity) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: moc), let obj = insertOrUpdateCallBack(entity) else {
             return nil
         }
         for property in entity.properties {
@@ -68,13 +67,16 @@ extension NSManagedObject {
         return obj;
     }
     
+/**
+ *  This founction is used to encoding Entity instance to a dictionary
+ **/
+    
     func enCode() -> [String: Any] {
         var rs = [String: Any]()
         for property in entity.properties {
             if let v = value(forKey: property.name) {
                 if let m = v as? NSManagedObject {
                     rs[property.name] = m.enCode()
-                    
                 }
                 rs[property.name] = value(forKey: property.name)
             }
