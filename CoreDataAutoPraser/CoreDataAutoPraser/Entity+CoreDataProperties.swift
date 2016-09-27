@@ -15,7 +15,7 @@ import CoreData
 extension Entity {
 
     @NSManaged var mBool: NSNumber?
-    @NSManaged var mDate: NSDate?
+    @NSManaged var mDate: Date?
     @NSManaged var mDouble: NSNumber?
     @NSManaged var mFloat: NSNumber?
     @NSManaged var mInt16: NSNumber?

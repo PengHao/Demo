@@ -9,12 +9,12 @@
 import UIKit
 import CoreData
 class ViewController: UIViewController {
-    var context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+    var context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        guard let modelURL = NSBundle.mainBundle().URLForResource("CoreDataAutoPraser", withExtension: "momd"),
-            let model = NSManagedObjectModel(contentsOfURL: modelURL) else {
+        guard let modelURL = Bundle.main.url(forResource: "CoreDataAutoPraser", withExtension: "momd"),
+            let model = NSManagedObjectModel(contentsOf: modelURL) else {
             return
         }
         let coodinator = NSPersistentStoreCoordinator(managedObjectModel: model)
@@ -31,13 +31,13 @@ class ViewController: UIViewController {
             "mInt32"    :"12342141",
             "mInt64"    :"123789126651641293",
             "mString"   :"gdasd qweggdsa gdsa"
-        ]
+        ] as [String : Any]
         
         //NSDictionary
         let infoDic = NSDictionary(dictionary: info)
         
         let entity = NSManagedObject.CreateWithMoc(context, entityName: "Entity", info: infoDic) { (description) -> NSManagedObject? in
-            let obj = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: self.context)
+            let obj = NSEntityDescription.insertNewObject(forEntityName: "Entity", into: self.context)
             return obj
         }
         

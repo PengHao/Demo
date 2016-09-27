@@ -10,18 +10,18 @@ import Foundation
 import CoreData
 
 public enum MLSynchronousStatus : Int16 {
-    case Normal = 0             //正常
-    case Committing = 1         //正在提交
-    case Updating = 2           //正在更新
-    case Deletting = 3          //正在删除
+    case normal = 0             //正常
+    case committing = 1         //正在提交
+    case updating = 2           //正在更新
+    case deletting = 3          //正在删除
 }
 
 extension NSManagedObject {
     typealias SetPropertiesValuesCallback = (NSEntityDescription) -> NSManagedObject?
     
-    class func CreateWithMoc(moc: NSManagedObjectContext, entityName: String, info: AnyObject, keyMap: [String: String]? = nil, checkCallBack: SetPropertiesValuesCallback) -> NSManagedObject? {
+    class func CreateWithMoc(_ moc: NSManagedObjectContext, entityName: String, info: AnyObject, keyMap: [String: String]? = nil, checkCallBack: SetPropertiesValuesCallback) -> NSManagedObject? {
         var _optionPropertiesList = [String]();
-        guard let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: moc), let obj = checkCallBack(entity) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName, in: moc), let obj = checkCallBack(entity) else {
             return nil
         }
         for property in entity.properties {
@@ -31,8 +31,8 @@ extension NSManagedObject {
                 continue
             }
             let key = keyMap?[property.name] ?? property.name
-            guard let v = info.valueForKey(key) else {
-                if !property.optional {
+            guard let v = info.value(forKey: key) else {
+                if !property.isOptional {
                     print("Cannot find value of key \(key) in params")
                     return nil
                 } else {
@@ -42,20 +42,20 @@ extension NSManagedObject {
             }
             if let attrClsName = attributeDesc?.attributeValueClassName,
                 let cls = NSClassFromString(attrClsName) {
-                if !v.isKindOfClass(cls) {
+                if !(v as AnyObject).isKind(of: cls) {
                     var value: AnyObject? = nil
                     if attrClsName == "NSNumber" {
-                        value = v.doubleValue
+                        value = (v as AnyObject).doubleValue as AnyObject?
                     } else if attrClsName == "NSString" {
-                        value = "\(v)"
+                        value = "\(v)" as AnyObject?
                     } else if attrClsName == "NSDate" {
-                        if let d = v.doubleValue {
-                            value = NSDate(timeIntervalSince1970: d)
+                        if let d = (v as AnyObject).doubleValue {
+                            value = Date(timeIntervalSince1970: d) as AnyObject?
                         }
                     }
                     if value != nil {
                         obj.setValue(value, forKey: property.name)
-                    } else if !property.optional {
+                    } else if !property.isOptional {
                         print("Params value of key \(property.name)'s type is invalide, required is \(attrClsName), value is \(v)")
                     }
                 } else {
@@ -68,11 +68,16 @@ extension NSManagedObject {
         return obj;
     }
     
-    func enCode() -> [String: AnyObject] {
-        var rs = [String: AnyObject]()
+    func enCode() -> [String: Any] {
+        var rs = [String: Any]()
         for property in entity.properties {
-            let v = valueForKey(property.name)
-            rs[property.name] = v?.enCode?() ?? valueForKey(property.name)
+            if let v = value(forKey: property.name) {
+                if let m = v as? NSManagedObject {
+                    rs[property.name] = m.enCode()
+                    
+                }
+                rs[property.name] = value(forKey: property.name)
+            }
         }
         return rs
     }
