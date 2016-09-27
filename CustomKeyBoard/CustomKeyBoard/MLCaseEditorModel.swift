@@ -24,6 +24,7 @@ class MLCaseEditorItem: NSObject, MLEditorItem {
     
     init(_type: EN_MLCaseItem) {
         type = _type
+        placeholder = type.placeholder()
     }
 }
 
@@ -44,6 +45,18 @@ enum EN_MLCaseItem : Int {
             "随访 讨论",
             ]
         return cellTitles[self.rawValue]
+    }
+    
+    func placeholder() -> String {
+        
+        let cellPlaceholder = [
+            "请输入病例标题",
+            "请输入主诉和病史",
+            "请输入查体和辅查",
+            "请输入诊断和治疗",
+            "请输入随访和讨论",
+            ]
+        return cellPlaceholder[self.rawValue]
     }
     
     func desc() -> (String, UIColor) {

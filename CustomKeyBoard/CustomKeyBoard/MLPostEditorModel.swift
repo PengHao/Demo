@@ -64,18 +64,33 @@ class MLTitleItem: NSObject, MLEditorItem {
     var content : String?
     var attrContent: NSAttributedString?
     var placeholder: String?
+    init(content : String? = nil) {
+        super.init()
+        self.content = content
+        self.placeholder = "请输入帖子标题"
+    }
 }
 
 class MLVoteItem: NSObject, MLEditorItem {
     var content : String?
     var attrContent: NSAttributedString?
     var placeholder: String?
+    init(content : String? = nil) {
+        super.init()
+        self.content = content
+        self.placeholder = "请输入投票内容"
+    }
 }
 
 class MLPostItem: NSObject, MLEditorItem {
     var content : String?
     var attrContent: NSAttributedString?
     var placeholder: String?
+    init(attrContent : NSAttributedString? = nil) {
+        super.init()
+        self.attrContent = attrContent
+        self.placeholder = "请输入帖子内容"
+    }
 }
 
 class MLPostEditorModel: NSObject {

@@ -10,11 +10,7 @@ import UIKit
 import Foundation
 
 class MLCaseItemEditorViewController: UIViewController {
-    var editorItem: MLCaseEditorItem! {
-        didSet {
-            title = editorItem.type.title()
-        }
-    }
+    var editorItem: MLCaseEditorItem!
     @IBOutlet weak var textEditorBottomOffset: NSLayoutConstraint!
     @IBOutlet weak var textEditorView: MLTextEditView!
     override func viewDidLoad() {
@@ -29,6 +25,9 @@ class MLCaseItemEditorViewController: UIViewController {
         navigationItem.leftBarButtonItem?.title = nil
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完成", style: .Plain, target: self, action: #selector(onFinish))
+        
+        title = editorItem.type.title()
+        textEditorView.placeHolder = editorItem.placeholder
     }
     
     func onBack() {

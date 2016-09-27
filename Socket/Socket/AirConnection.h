@@ -11,11 +11,15 @@
 
 #include <iostream>
 #include "AirSocket.h"
+#include "AirSocketConfig.h"
+#include "AirPackage.hpp"
+
 typedef std::function< size_t()> ReseiveHandler;
 namespace AirCpp{
+#define TEMP_BUFFER_SIZE 1024
     class Client;
     class Listener;
-    class Server;
+    class Server;    
     class Connection {
         friend Client;
         friend Listener;
@@ -25,14 +29,27 @@ namespace AirCpp{
         int m_iDomainType;
         int m_iDataType;
         int m_iProtocol;
-        ReseiveHandler m_fReseiveHandler;
+        CircleBuffer *m_pReadBuffer;
         
+        CircleBuffer *m_pWriteBuffer;
+        
+        ReseiveHandler m_fReseiveHandler;
+        char m_strTempBuffer[TEMP_BUFFER_SIZE];
         protected:
         ~Connection() {
             delete m_pSocket;
+            delete m_pReadBuffer;
+            delete m_pWriteBuffer;
         }
         
         void handleReceive() {
+            memset(m_strTempBuffer, 0, TEMP_BUFFER_SIZE);
+            long long size = m_pSocket->read(m_strTempBuffer, TEMP_BUFFER_SIZE);
+            m_pReadBuffer->write(m_strTempBuffer, size);
+            Package::FillData(size, m_strTempBuffer, [&](const Package *pakage) {
+                //parser Msg
+            });
+            
             if (m_fReseiveHandler != nullptr) {
                 m_fReseiveHandler();
             }
@@ -43,14 +60,19 @@ namespace AirCpp{
         m_iDataType(dataType),
         m_iProtocol(protocol),
         m_fReseiveHandler(nullptr),
-        m_pSocket(nullptr)
+        m_pSocket(nullptr),
+        m_pReadBuffer(new CircleBuffer(READ_BUFFER_SIZE)),
+        m_pWriteBuffer(new CircleBuffer(WRITE_BUFFER_SIZE))
         {
+            
         }
         
         
         Connection(Socket *ps):
         m_fReseiveHandler(nullptr),
-        m_pSocket(ps)
+        m_pSocket(ps),
+        m_pReadBuffer(new CircleBuffer(READ_BUFFER_SIZE)),
+        m_pWriteBuffer(new CircleBuffer(WRITE_BUFFER_SIZE))
         {
             m_fReseiveHandler = nullptr;
         }

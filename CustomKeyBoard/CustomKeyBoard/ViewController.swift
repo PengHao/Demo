@@ -31,7 +31,8 @@ class ViewController: UIViewController {
 extension ViewController: MLInputAccessoryViewDelegate {
     func onLeftBtnTouched() {
         print("onLeftBtnTouched")
-        let vc = MLPostEditorViewController(nibName: "MLPostEditorViewController", bundle: NSBundle.mainBundle())
+        
+        let vc = MLCaseEditorViewController(nibName: "MLCaseEditorViewController", bundle: NSBundle.mainBundle())
         vc.automaticallyAdjustsScrollViewInsets = true
         let nvc = UINavigationController(rootViewController: vc)
         self.presentViewController(nvc, animated: false, completion: nil)

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+protocol MLLogPlayerDelegate : NSObjectProtocol{
+    func handleLogs(logs: [MLLog])
+}
 class MLLogPlayer : NSObject {
     private static let timerQueue = dispatch_queue_create("ml_timer_queue", nil)
     private var parser: MLLogParser? = nil
@@ -27,6 +30,8 @@ class MLLogPlayer : NSObject {
         parser = MLLogParser(urlString: urlString)
     }
     
+    weak var delegate: MLLogPlayerDelegate?
+    
     @objc private func fire(t: NSTimer) {
         currentTime += 0.5
         print("current time: \(currentTime)")
@@ -43,6 +48,7 @@ class MLLogPlayer : NSObject {
     
     private func sendLogs(logs: [MLLog]) {
         //todo send:
+        delegate?.handleLogs(logs)
         for log in logs {
             print("sendLog: \(log.timeOffset), \(log.jsonStr)")
         }
