@@ -34,6 +34,21 @@ void protobuf_AddDesc_Base_2eproto();
 void protobuf_AssignDesc_Base_2eproto();
 void protobuf_ShutdownFile_Base_2eproto();
 
+<<<<<<< HEAD
+class PBMsg;
+class PBPackage;
+
+// ===================================================================
+
+class PBMsg : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:PBMsg) */ {
+ public:
+  PBMsg();
+  virtual ~PBMsg();
+
+  PBMsg(const PBMsg& from);
+
+  inline PBMsg& operator=(const PBMsg& from) {
+=======
 class Msg;
 class Package;
 
@@ -47,11 +62,27 @@ class Msg : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   Msg(const Msg& from);
 
   inline Msg& operator=(const Msg& from) {
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
+<<<<<<< HEAD
+  static const PBMsg& default_instance();
+
+  void Swap(PBMsg* other);
+
+  // implements Message ----------------------------------------------
+
+  inline PBMsg* New() const { return New(NULL); }
+
+  PBMsg* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const PBMsg& from);
+  void MergeFrom(const PBMsg& from);
+=======
   static const Msg& default_instance();
 
   void Swap(Msg* other);
@@ -65,6 +96,7 @@ class Msg : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const Msg& from);
   void MergeFrom(const Msg& from);
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
   void Clear();
   bool IsInitialized() const;
 
@@ -83,7 +115,11 @@ class Msg : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
+<<<<<<< HEAD
+  void InternalSwap(PBMsg* other);
+=======
   void InternalSwap(Msg* other);
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -105,7 +141,11 @@ class Msg : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   ::google::protobuf::int32 d() const;
   void set_d(::google::protobuf::int32 value);
 
+<<<<<<< HEAD
+  // @@protoc_insertion_point(class_scope:PBMsg)
+=======
   // @@protoc_insertion_point(class_scope:Msg)
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -117,6 +157,20 @@ class Msg : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   friend void protobuf_ShutdownFile_Base_2eproto();
 
   void InitAsDefaultInstance();
+<<<<<<< HEAD
+  static PBMsg* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class PBPackage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:PBPackage) */ {
+ public:
+  PBPackage();
+  virtual ~PBPackage();
+
+  PBPackage(const PBPackage& from);
+
+  inline PBPackage& operator=(const PBPackage& from) {
+=======
   static Msg* default_instance_;
 };
 // -------------------------------------------------------------------
@@ -129,11 +183,32 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   Package(const Package& from);
 
   inline Package& operator=(const Package& from) {
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
+<<<<<<< HEAD
+  static const PBPackage& default_instance();
+
+  enum PBAirMessageCase {
+    kMsg = 1,
+    PBAIRMESSAGE_NOT_SET = 0,
+  };
+
+  void Swap(PBPackage* other);
+
+  // implements Message ----------------------------------------------
+
+  inline PBPackage* New() const { return New(NULL); }
+
+  PBPackage* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const PBPackage& from);
+  void MergeFrom(const PBPackage& from);
+=======
   static const Package& default_instance();
 
   enum AirMessageCase {
@@ -152,6 +227,7 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   void MergeFrom(const ::google::protobuf::Message& from);
   void CopyFrom(const Package& from);
   void MergeFrom(const Package& from);
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
   void Clear();
   bool IsInitialized() const;
 
@@ -170,7 +246,11 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
+<<<<<<< HEAD
+  void InternalSwap(PBPackage* other);
+=======
   void InternalSwap(Package* other);
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -186,6 +266,32 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 
   // accessors -------------------------------------------------------
 
+<<<<<<< HEAD
+  // optional .PBMsg msg = 1;
+  bool has_msg() const;
+  void clear_msg();
+  static const int kMsgFieldNumber = 1;
+  const ::PBMsg& msg() const;
+  ::PBMsg* mutable_msg();
+  ::PBMsg* release_msg();
+  void set_allocated_msg(::PBMsg* msg);
+
+  PBAirMessageCase PBAirMessage_case() const;
+  // @@protoc_insertion_point(class_scope:PBPackage)
+ private:
+  inline void set_has_msg();
+
+  inline bool has_PBAirMessage() const;
+  void clear_PBAirMessage();
+  inline void clear_has_PBAirMessage();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  union PBAirMessageUnion {
+    PBAirMessageUnion() {}
+    ::PBMsg* msg_;
+  } PBAirMessage_;
+=======
   // optional .Msg msg = 1;
   bool has_msg() const;
   void clear_msg();
@@ -210,6 +316,7 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
     AirMessageUnion() {}
     ::Msg* msg_;
   } AirMessage_;
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
 
@@ -218,7 +325,11 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
   friend void protobuf_ShutdownFile_Base_2eproto();
 
   void InitAsDefaultInstance();
+<<<<<<< HEAD
+  static PBPackage* default_instance_;
+=======
   static Package* default_instance_;
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
 };
 // ===================================================================
 
@@ -226,6 +337,22 @@ class Package : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
+<<<<<<< HEAD
+// PBMsg
+
+// optional int32 d = 1;
+inline void PBMsg::clear_d() {
+  d_ = 0;
+}
+inline ::google::protobuf::int32 PBMsg::d() const {
+  // @@protoc_insertion_point(field_get:PBMsg.d)
+  return d_;
+}
+inline void PBMsg::set_d(::google::protobuf::int32 value) {
+  
+  d_ = value;
+  // @@protoc_insertion_point(field_set:PBMsg.d)
+=======
 // Msg
 
 // optional int32 d = 1;
@@ -240,10 +367,49 @@ inline void Msg::set_d(::google::protobuf::int32 value) {
   
   d_ = value;
   // @@protoc_insertion_point(field_set:Msg.d)
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
 }
 
 // -------------------------------------------------------------------
 
+<<<<<<< HEAD
+// PBPackage
+
+// optional .PBMsg msg = 1;
+inline bool PBPackage::has_msg() const {
+  return PBAirMessage_case() == kMsg;
+}
+inline void PBPackage::set_has_msg() {
+  _oneof_case_[0] = kMsg;
+}
+inline void PBPackage::clear_msg() {
+  if (has_msg()) {
+    delete PBAirMessage_.msg_;
+    clear_has_PBAirMessage();
+  }
+}
+inline  const ::PBMsg& PBPackage::msg() const {
+  // @@protoc_insertion_point(field_get:PBPackage.msg)
+  return has_msg()
+      ? *PBAirMessage_.msg_
+      : ::PBMsg::default_instance();
+}
+inline ::PBMsg* PBPackage::mutable_msg() {
+  if (!has_msg()) {
+    clear_PBAirMessage();
+    set_has_msg();
+    PBAirMessage_.msg_ = new ::PBMsg;
+  }
+  // @@protoc_insertion_point(field_mutable:PBPackage.msg)
+  return PBAirMessage_.msg_;
+}
+inline ::PBMsg* PBPackage::release_msg() {
+  // @@protoc_insertion_point(field_release:PBPackage.msg)
+  if (has_msg()) {
+    clear_has_PBAirMessage();
+    ::PBMsg* temp = PBAirMessage_.msg_;
+    PBAirMessage_.msg_ = NULL;
+=======
 // Package
 
 // optional .Msg msg = 1;
@@ -280,11 +446,31 @@ inline ::Msg* Package::release_msg() {
     clear_has_AirMessage();
     ::Msg* temp = AirMessage_.msg_;
     AirMessage_.msg_ = NULL;
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
     return temp;
   } else {
     return NULL;
   }
 }
+<<<<<<< HEAD
+inline void PBPackage::set_allocated_msg(::PBMsg* msg) {
+  clear_PBAirMessage();
+  if (msg) {
+    set_has_msg();
+    PBAirMessage_.msg_ = msg;
+  }
+  // @@protoc_insertion_point(field_set_allocated:PBPackage.msg)
+}
+
+inline bool PBPackage::has_PBAirMessage() const {
+  return PBAirMessage_case() != PBAIRMESSAGE_NOT_SET;
+}
+inline void PBPackage::clear_has_PBAirMessage() {
+  _oneof_case_[0] = PBAIRMESSAGE_NOT_SET;
+}
+inline PBPackage::PBAirMessageCase PBPackage::PBAirMessage_case() const {
+  return PBPackage::PBAirMessageCase(_oneof_case_[0]);
+=======
 inline void Package::set_allocated_msg(::Msg* msg) {
   clear_AirMessage();
   if (msg) {
@@ -302,6 +488,7 @@ inline void Package::clear_has_AirMessage() {
 }
 inline Package::AirMessageCase Package::AirMessage_case() const {
   return Package::AirMessageCase(_oneof_case_[0]);
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
 }
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
 // -------------------------------------------------------------------

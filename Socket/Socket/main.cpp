@@ -18,7 +18,7 @@ void startConnect() {
     AirCpp::Connection *con = c->createConnection("localhost", 28080);
 //    AirCpp::Connection *con = c->createConnection("www.baidu.com", 80);
     if (con != nullptr ) {
-        con->setReseiveHandler([&] {
+        con->setReseiveHandler([=] (const PBPackage *pakage, const AirCpp::Connection *conn){
             char c_data[10000] = {0};
             long long size = con->read(c_data, 10000);
             printf("size = %lld, \n%s", size, c_data);
@@ -43,14 +43,13 @@ void startListen() {
 
 
 int main(int argc, const char * argv[]) {
-
-    Package *p = new Package();
+    PBPackage *p = new PBPackage();
     auto msg = p->mutable_msg();
     msg->set_d(123);
     p->has_msg();
     p->msg();
     std::string v = p->SerializeAsString();
-    Package *p1 = new Package();
+    PBPackage *p1 = new PBPackage();
     p1->ParseFromString(v);
     auto msg1 = p1->msg();
     printf("%d", msg1.d());

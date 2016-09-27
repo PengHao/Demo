@@ -11,6 +11,15 @@
 // TO CIVIL AND CRIMINAL PENALTIES.
 
 syntax = "proto3";
+<<<<<<< HEAD
+message PBMsg {
+    int32 d = 1;
+}
+
+message PBPackage {
+    oneof PBAirMessage {
+        PBMsg msg = 1;
+=======
 message Msg {
     int32 d = 1;
 }
@@ -18,6 +27,7 @@ message Msg {
 message Package {
     oneof AirMessage {
         Msg msg = 1;
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
      };
 }
 

@@ -7,3 +7,8 @@
 //
 
 #include "AirPackage.hpp"
+<<<<<<< HEAD
+using namespace AirCpp;
+Package Package::_mCurrentPackage = Package();
+=======
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857

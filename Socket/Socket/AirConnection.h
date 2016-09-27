@@ -13,6 +13,7 @@
 #include "AirSocket.h"
 #include "AirSocketConfig.h"
 #include "AirPackage.hpp"
+#include "Base.pb.h"
 
 typedef std::function< size_t()> ReseiveHandler;
 namespace AirCpp{
@@ -30,7 +31,7 @@ namespace AirCpp{
         int m_iDataType;
         int m_iProtocol;
         CircleBuffer *m_pReadBuffer;
-        
+        typedef std::function< void (const PBPackage * , const Connection *)> ReseiveHandler;
         CircleBuffer *m_pWriteBuffer;
         
         ReseiveHandler m_fReseiveHandler;
@@ -42,17 +43,18 @@ namespace AirCpp{
             delete m_pWriteBuffer;
         }
         
-        void handleReceive() {
+        void receive() {
             memset(m_strTempBuffer, 0, TEMP_BUFFER_SIZE);
             long long size = m_pSocket->read(m_strTempBuffer, TEMP_BUFFER_SIZE);
-            m_pReadBuffer->write(m_strTempBuffer, size);
-            Package::FillData(size, m_strTempBuffer, [&](const Package *pakage) {
-                //parser Msg
-            });
-            
-            if (m_fReseiveHandler != nullptr) {
-                m_fReseiveHandler();
+            if (size <= 0) {
+                return;
             }
+            Package::FillData(size, m_strTempBuffer, [&](const Package pakage) {
+                //parser Msg
+                PBPackage *p = new PBPackage();
+                p->ParseFromArray(pakage.m_pData, pakage.m_ullSize);
+                m_fReseiveHandler(p, this);
+            });
         }
         
         Connection(int domainType, int dataType, int protocol):
