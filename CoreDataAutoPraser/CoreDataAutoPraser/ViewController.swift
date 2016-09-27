@@ -21,7 +21,8 @@ class ViewController: UIViewController {
         context.persistentStoreCoordinator = coodinator
         
         
-        //Swift Dictionary
+//MARK: Example
+        //origal data: Swift Dictionary
         let info = [
             "mBool"     :0,
             "mDate"     :1470391786.4013271,
@@ -33,25 +34,21 @@ class ViewController: UIViewController {
             "mString"   :"gdasd qweggdsa gdsa"
         ] as [String : Any]
         
-        //NSDictionary
+        //convert to NSDictionary
         let infoDic = NSDictionary(dictionary: info)
         
         let entity = NSManagedObject.CreateWithMoc(context, entityName: "Entity", info: infoDic) { (description) -> NSManagedObject? in
+            //insert a new object, or fetch a valid object
             let obj = NSEntityDescription.insertNewObject(forEntityName: "Entity", into: self.context)
             return obj
         }
-        
+        //print the entity
         print("\(entity)")
         
+        //print the entities' encode dictionary
         let en = entity?.enCode()
         print("\(en)")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
