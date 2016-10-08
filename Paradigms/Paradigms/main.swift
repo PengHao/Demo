@@ -9,4 +9,13 @@
 import Foundation
 
 print("Hello, World!")
-test()
+
+let time = 3678.0
+let sec = Int(time)
+let h = sec / 3600
+let m = sec % 3600 / 60
+let s = sec % 60
+
+print(NSString(format: "%02d:%02d:%02d, total: %.2f", h, m, s, time))
+
+//test()
