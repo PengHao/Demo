@@ -22,10 +22,10 @@ class AirNoticeBanner: UIView {
     private struct _Args {
         let attributeString: NSAttributedString!
         let icon: UIImage?
-        let btnTitle: String?
+        let btnTitle: NSAttributedString?
         let btnImage: UIImage?
         let onTapd:AirNoticeBannerClick?
-        init(attributeString: NSAttributedString, icon: UIImage? = nil, btnTitle: String? = nil, btnImage: UIImage? = nil, onTapd:AirNoticeBannerClick? = nil) {
+        init(attributeString: NSAttributedString, icon: UIImage? = nil, btnTitle: NSAttributedString? = nil, btnImage: UIImage? = nil, onTapd:AirNoticeBannerClick? = nil) {
             self.attributeString = attributeString
             self.icon = icon
             self.btnTitle = btnTitle
@@ -40,6 +40,17 @@ class AirNoticeBanner: UIView {
                     _show(args)
                 }
             }
+        }
+    }
+    
+    private var status: Int8 = 0
+    
+    private enum BannerStatus: Int8 {
+        case Prepare = 0
+        case Showing = 1
+        
+        func bitValue() -> Int8 {
+            return 1 << rawValue
         }
     }
     
@@ -69,10 +80,10 @@ class AirNoticeBanner: UIView {
         addSubview(iconImageView)
         addSubview(btn)
         btn.addTarget(self, action: #selector(onTapd(_:)), forControlEvents: .TouchUpInside)
-        bgImageView.backgroundColor = UIColor.grayColor()
+        bgImageView.image = UIImage(named: "bannerBG")?.resizableImageWithCapInsets(UIEdgeInsetsMake(29, 29, 29, 29))
     }
     
-    static func show(attributeString: NSAttributedString, icon: UIImage? = nil, btnTitle: String? = nil, btnImage: UIImage? = nil, onTapd:AirNoticeBannerClick? = nil) {
+    static func show(attributeString: NSAttributedString, icon: UIImage? = nil, btnTitle: NSAttributedString? = nil, btnImage: UIImage? = nil, onTapd:AirNoticeBannerClick? = nil) {
         let args = _Args(attributeString: attributeString, icon: icon, btnTitle: btnTitle, btnImage: btnImage, onTapd: onTapd)
         banner.addQueue(args)
     }
@@ -85,7 +96,7 @@ class AirNoticeBanner: UIView {
         iconImageView.hidden = args.icon == nil
         
         btn.setImage(args.btnImage, forState: .Normal)
-        btn.setTitle(args.btnTitle, forState: .Normal)
+        btn.setAttributedTitle(args.btnTitle, forState: .Normal)
         btn.hidden = args.btnTitle == nil && args.btnImage == nil
         btn.sizeToFit()
         
@@ -106,12 +117,12 @@ class AirNoticeBanner: UIView {
         let totoalW = renderRect.size.width + kownWidth
         let totoalH = renderRect.size.height + 16 + edgeY + edgeY
         frame = CGRectMake(0, -totoalH, totoalW, totoalH)
-        bgImageView.frame = bounds
+        bgImageView.frame = CGRectMake(-8, 4, totoalW + 16, 57)
         
         iconImageView.frame = CGRect(origin: CGPoint(x: edgeX, y: (totoalH - iconHeight)/2), size: CGSize(width: iconWidth, height: iconHeight))
         contentLabel.frame = CGRect(origin: CGPoint(x: iconImageView.frame.origin.x + iconImageView.frame.size.width, y: edgeY), size: CGSize(width: renderRect.width + 16, height: renderRect.height + 16))
+        contentLabel.textAlignment = .Center
         btn.frame = CGRect(origin: CGPoint(x: contentLabel.frame.origin.x + contentLabel.frame.size.width, y: (totoalH - btn.bounds.height)/2), size: btn.frame.size)
-        
         __show()
     }
     
@@ -132,7 +143,7 @@ class AirNoticeBanner: UIView {
         }
         isShowing = true
         UIView.animateWithDuration(0.5) {
-            self.center = CGPoint(x: self.center.x, y: self.bounds.size.height / 2)
+            self.center = CGPoint(x: self.center.x, y: self.bounds.size.height / 2 + 20)
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC) * 2), dispatch_get_main_queue()) {
             UIView.animateWithDuration(0.5, animations: {

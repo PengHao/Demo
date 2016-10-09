@@ -101,10 +101,9 @@ namespace AirCpp {
         void handleReceiveData() {
             for(const auto& kvp : m_mapConnections) {
                 if(FD_ISSET(kvp.second->m_pSocket->m_iSocketHandle, &m_ConnSet)) {
-                    if (kvp.second->m_fReseiveHandler != nullptr && kvp.second->m_fReseiveHandler() == 0) {
-//                        kvp.second->m_fReseiveHandler = nullptr;
+                    if (kvp.second->m_fReseiveHandler != nullptr) {
+                        kvp.second->receive();
                     }
-                    
                 }
             }
         }

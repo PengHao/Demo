@@ -1,0 +1,34 @@
+// File:        Base.proto
+// Description: ---
+// Notes:       ---
+// Author:      penghao <penghao@medlinker.com>
+// Revision:    2016-07-25 by penghao
+//
+// Copyright (C) 2014-2016 Medlinker. All Rights Reserved.
+// This is unpublished proprietary source code of Medlinker Ltd. The copyright
+// notice above does not evidence any actual or intended publication of such
+// source code. UNAUTHORIZED DISTRIBUTION, ADAPTATION OR USE MAY BE SUBJECT
+// TO CIVIL AND CRIMINAL PENALTIES.
+
+syntax = "proto3";
+<<<<<<< HEAD
+message PBMsg {
+    int32 d = 1;
+}
+
+message PBPackage {
+    oneof PBAirMessage {
+        PBMsg msg = 1;
+=======
+message Msg {
+    int32 d = 1;
+}
+
+message Package {
+    oneof AirMessage {
+        Msg msg = 1;
+>>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
+     };
+}
+
+// vim:ts=4:sw=4:et:

@@ -12,6 +12,29 @@ import Foundation
 let dic = ["123":"123"]
 let s = dic["123"] ?? "321"
 
+
+struct Api : Reflectable {
+    static func t() {
+        print("Hello, Api! \(s)")
+        
+    }
+    struct User {
+        static func t() {
+            print("Hello, User! \(Api.User().dynamicType)")
+        }
+        struct Unfollow {
+            static func t() {
+                print("Hello, Unfollow! \(s)")
+            }
+            
+        }
+    }
+}
+
+Api.t()
+Api.User.t()
+Api.User.Unfollow.t()
+
 print("Hello, World! \(s)")
 
 ClassCreator("A")?.log()

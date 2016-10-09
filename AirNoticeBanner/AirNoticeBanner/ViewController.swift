@@ -12,9 +12,17 @@ class ViewController: UIViewController {
     var i = 0
     @IBAction func onShow(sender: AnyObject) {
         i = i + 1
-        AirNoticeBanner.show(NSAttributedString(string: " 123321 \(i) "), icon: UIImage(named: "FailedFlag"), btnTitle: "点击关闭") {
-            print("on close")
-        }
+        let str = NSAttributedString(string: "123363728163781221 \(i)", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+            ])
+        
+        
+        let title = NSAttributedString(string: "点击关闭 >", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+            ])
+        AirNoticeBanner.show(str)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

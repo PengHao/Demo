@@ -51,7 +51,7 @@ namespace AirCpp {
                 AirCpp::Listener *pListener = new AirCpp::Listener(AF_INET, SOCK_STREAM, IPPROTO_TCP);
                 if (pListener->init(m_uiPort, m_uiBackLog) == 0 ) {
                     pListener->start_listen([&](const int & handle, Connection *connect) {
-                        connect->setReseiveHandler([=] {
+                        connect->setReseiveHandler([=] (const PBPackage *pakage, const Connection *conn){
                             char c_data[10000] = {0};
                             long long size = connect->read(c_data, 10000);
                             printf("size = %lld, \n%s", size, c_data);
@@ -115,8 +115,9 @@ namespace AirCpp {
         void handleReceiveData() {
             for(const auto& kvp : m_mapConnections) {
                 if(FD_ISSET(kvp.second->m_pSocket->m_iSocketHandle, &m_ConnSet)) {
-                    if (kvp.second->m_fReseiveHandler != nullptr && kvp.second->m_fReseiveHandler() == 0) {
-                        kvp.second->m_fReseiveHandler = nullptr;
+                    
+                    if (kvp.second->m_fReseiveHandler != nullptr) {
+                        kvp.second->receive();
                     }
                 }
             }
