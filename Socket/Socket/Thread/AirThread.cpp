@@ -94,8 +94,6 @@ namespace AirCpp {
         Operation* o = new Operation();
         o->init(_func);
         thread->push_operation(o);
-//        Thread *c = current_thread();
-//        pthread_cond_wait(&c->p_cond, &c->p_mutex);
     }
     
     void Thread::excute_apply(int concurrence_count, std::function<void(int)> _func) {

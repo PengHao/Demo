@@ -10,7 +10,6 @@
 		4B1629E21CD1F7D300298A1E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B1629E11CD1F7D300298A1E /* main.cpp */; };
 		4B1629ED1CD208F200298A1E /* AirServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B1629EB1CD208F200298A1E /* AirServer.cpp */; };
 		4B4499B01D47165C0093A189 /* AirPackage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B4499AE1D47165C0093A189 /* AirPackage.cpp */; };
-		4B8D56441D45FB32005BE82A /* Base.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4B8D56411D45F5A3005BE82A /* Base.pb.cc */; };
 		4BD095B71D30F7CC006D4371 /* AirClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095B51D30F7CC006D4371 /* AirClient.cpp */; };
 		4BD095C31D310343006D4371 /* AirQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095BB1D310343006D4371 /* AirQueue.cpp */; };
 		4BD095C41D310343006D4371 /* AirThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD095BD1D310343006D4371 /* AirThread.cpp */; };
@@ -41,9 +40,6 @@
 		4B4499AE1D47165C0093A189 /* AirPackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPackage.cpp; sourceTree = "<group>"; };
 		4B4499AF1D47165C0093A189 /* AirPackage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirPackage.hpp; sourceTree = "<group>"; };
 		4B4499B11D473AA80093A189 /* AirSocketConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirSocketConfig.h; sourceTree = "<group>"; };
-		4B8D56411D45F5A3005BE82A /* Base.pb.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Base.pb.cc; sourceTree = "<group>"; };
-		4B8D56421D45F5A3005BE82A /* Base.pb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Base.pb.h; sourceTree = "<group>"; };
-		4B8D56431D45F5A3005BE82A /* Base.proto */ = {isa = PBXFileReference; lastKnownFileType = text; path = Base.proto; sourceTree = "<group>"; };
 		4BD095B51D30F7CC006D4371 /* AirClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirClient.cpp; sourceTree = "<group>"; };
 		4BD095B61D30F7CC006D4371 /* AirClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirClient.hpp; sourceTree = "<group>"; };
 		4BD095B91D310343006D4371 /* AirLinuxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirLinuxThread.h; sourceTree = "<group>"; };
@@ -72,7 +68,6 @@
 		4B1629D51CD1F7D300298A1E = {
 			isa = PBXGroup;
 			children = (
-				4B8D56401D45F5A3005BE82A /* proto */,
 				4B1629E01CD1F7D300298A1E /* Socket */,
 				4B1629DF1CD1F7D300298A1E /* Products */,
 			);
@@ -105,16 +100,6 @@
 			path = Socket;
 			sourceTree = "<group>";
 		};
-		4B8D56401D45F5A3005BE82A /* proto */ = {
-			isa = PBXGroup;
-			children = (
-				4B8D56411D45F5A3005BE82A /* Base.pb.cc */,
-				4B8D56421D45F5A3005BE82A /* Base.pb.h */,
-				4B8D56431D45F5A3005BE82A /* Base.proto */,
-			);
-			path = proto;
-			sourceTree = "<group>";
-		};
 		4BD095B81D310343006D4371 /* Thread */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +124,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B1629E51CD1F7D300298A1E /* Build configuration list for PBXNativeTarget "Socket" */;
 			buildPhases = (
-				4B4499A91D470CE20093A189 /* ShellScript */,
 				4B1629DA1CD1F7D300298A1E /* Sources */,
 				4B1629DB1CD1F7D300298A1E /* Frameworks */,
 				4B1629DC1CD1F7D300298A1E /* CopyFiles */,
@@ -159,7 +143,7 @@
 		4B1629D61CD1F7D300298A1E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "彭浩";
 				TargetAttributes = {
 					4B1629DD1CD1F7D300298A1E = {
@@ -184,29 +168,12 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4B4499A91D470CE20093A189 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd proto\nls -l | grep \".proto\" | cut -b 49- | xargs -I $[] protoc --proto_path=. --cpp_out=. $[]\ncd ..";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		4B1629DA1CD1F7D300298A1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4BD095C61D310343006D4371 /* AirThreadPool.cpp in Sources */,
-				4B8D56441D45FB32005BE82A /* Base.pb.cc in Sources */,
 				4B1629E21CD1F7D300298A1E /* main.cpp in Sources */,
 				4BD095B71D30F7CC006D4371 /* AirClient.cpp in Sources */,
 				4BD095C31D310343006D4371 /* AirQueue.cpp in Sources */,
@@ -234,8 +201,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -278,8 +247,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -306,10 +277,6 @@
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = (
-					"-lprotoc",
-					"-lprotobuf",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/proto";
 			};
@@ -320,10 +287,6 @@
 			buildSettings = {
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = (
-					"-lprotoc",
-					"-lprotobuf",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/proto";
 			};

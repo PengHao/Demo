@@ -28,11 +28,12 @@ namespace AirCpp {
         m_pWrite(nullptr),
         m_pRead(nullptr)
         {
-            if (m_ullSize > 0) {
-                m_pData = (unsigned char *)calloc(m_ullSize, sizeof(unsigned char));
-                m_pWrite = m_pData;
-                m_pRead = m_pData;
+            if (m_ullSize ==0) {
+                return;
             }
+            m_pData = (unsigned char *)calloc(m_ullSize, sizeof(unsigned char));
+            m_pWrite = m_pData;
+            m_pRead = m_pData;
         };
         
         unsigned long long write(const char *c_data, unsigned long long length) {
@@ -67,18 +68,12 @@ namespace AirCpp {
             return readSize;
         }
     };
-
-    
     
     class Package {
     public:
         unsigned long long m_ullSize;
         unsigned char *m_pData;
-<<<<<<< HEAD
-        typedef std::function<void(const Package &package)> FillPackageCallBack;
-=======
         typedef std::function<void(const Package *package)> FillPackageCallBack;
->>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
     public:
         unsigned long long m_ullSettedSize;
         Package():
@@ -89,30 +84,6 @@ namespace AirCpp {
         }
         
         ~Package() {
-<<<<<<< HEAD
-            clean();
-        }
-        
-        void clean(){
-            m_ullSize = 0;
-            m_ullSettedSize = 0;
-            free(m_pData);
-            m_pData = nullptr;
-        }
-        
-        static Package _mCurrentPackage;
-        
-        static void FillData(unsigned long long len, char *data, FillPackageCallBack handleFilledPackage) {
-            
-            unsigned long long sizeofSize = sizeof(_mCurrentPackage.m_ullSize);
-            unsigned char *pOffset = (unsigned char *)&_mCurrentPackage.m_ullSize;
-            char *pDataOffset = data;
-            if (_mCurrentPackage.m_ullSettedSize < sizeofSize) {
-                pOffset += _mCurrentPackage.m_ullSettedSize;
-                auto s = std::min(sizeofSize - _mCurrentPackage.m_ullSettedSize, len);
-                memcpy(pOffset, pDataOffset, s);
-                _mCurrentPackage.m_ullSettedSize += s;
-=======
             free(m_pData);
             m_pData = nullptr;
             m_pData = 0;
@@ -132,25 +103,10 @@ namespace AirCpp {
                 auto s = std::min(sizeofSize - pCurrentPackage->m_ullSettedSize, len);
                 memcpy(pOffset, pDataOffset, s);
                 pCurrentPackage->m_ullSettedSize += s;
->>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
                 pDataOffset += s;
                 len -= s;
                 FillData(len, pDataOffset, handleFilledPackage);
             } else {
-<<<<<<< HEAD
-                if (_mCurrentPackage.m_ullSize > 0 && _mCurrentPackage.m_pData == nullptr) {
-                    _mCurrentPackage.m_pData = (unsigned char *)calloc(_mCurrentPackage.m_ullSize, sizeof(unsigned char));
-                }
-                pOffset = _mCurrentPackage.m_pData;
-                size_t settedDataSize = _mCurrentPackage.m_ullSettedSize - sizeofSize;
-                size_t unsetDataSize = _mCurrentPackage.m_ullSize - settedDataSize;
-                pOffset += settedDataSize;
-                if (unsetDataSize <= len) {
-                    memcpy(pOffset, data, unsetDataSize);
-                    _mCurrentPackage.m_ullSettedSize += unsetDataSize;
-                    handleFilledPackage(_mCurrentPackage);
-                    _mCurrentPackage.clean();
-=======
                 if (pCurrentPackage->m_ullSize > 0 && pCurrentPackage->m_pData == nullptr) {
                     pCurrentPackage->m_pData = (unsigned char *)calloc(pCurrentPackage->m_ullSize, sizeof(unsigned char));
                 }
@@ -163,7 +119,6 @@ namespace AirCpp {
                     pCurrentPackage->m_ullSettedSize += unsetDataSize;
                     handleFilledPackage(pCurrentPackage);
                     
->>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
                     len -= unsetDataSize;
                     pDataOffset += unsetDataSize;
                     if (len > 0) {
@@ -171,18 +126,11 @@ namespace AirCpp {
                     }
                 } else {
                     memcpy(pOffset, data, len);
-<<<<<<< HEAD
-                    _mCurrentPackage.m_ullSettedSize += len;
-=======
                     pCurrentPackage->m_ullSettedSize += len;
->>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
                 }
             }
         }
     };
-<<<<<<< HEAD
-=======
-    Package * Package::pCurrentPackage = nullptr;
->>>>>>> e4bdcbc1cdbe18472274b2dffc28334825527857
+    
 }
 #endif /* AirPackage_hpp */
